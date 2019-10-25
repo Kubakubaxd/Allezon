@@ -48,6 +48,8 @@ public class LoginController {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
 
+        // FIXME proces uwierzytelniania mozna wyniesc do innej klasy, w tym momencie zarzadca(kontroler)
+        //  wie o bardzo duzej ilosci logiki (on mial tylko widok zarzadzac prawda?)
         if (Register.userDB.checkUserPassword(username, password)) {
             //System.out.println("Tried to log in using " + loginRequest.getUsername());
             User user = Register.userDB.returnUser(username);

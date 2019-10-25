@@ -18,6 +18,8 @@ public class LoginFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+
+        // FIXME: styl, wypisuje pan wszystkie mozliwosci, mozna zrobic cos bardziej ogolnego? (nie wplywa na ocene)
         if (session.isLogged() ||
                 req.getRequestURI().contains("login.xhtml") ||
                 req.getRequestURI().contains("javax.faces.webapp.FacesServlet") ||

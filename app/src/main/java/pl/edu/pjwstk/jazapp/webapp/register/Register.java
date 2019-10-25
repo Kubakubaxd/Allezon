@@ -7,10 +7,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
+// FIXME: uzycie adnotacji z jsf/powninnismy z CDI czyli javax.enterprise.context.SessionScoped;
 @ManagedBean
 
 @SessionScoped
 public class Register implements Serializable {
+
+    // FIXME: dlaczego lista uzytkownikow jest wpisana na stale w modelu (wzorzec MVC) do strony rejestracji?
+    //  powinna to byc inna klasa ktora jest wstrzyknieta w odpowiednim kontekscie! (wplywa na ocene)
 
     public static UserDB userDB = new UserDB();
     private String firstname;

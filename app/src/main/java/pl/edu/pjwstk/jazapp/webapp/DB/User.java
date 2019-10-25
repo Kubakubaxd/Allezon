@@ -17,6 +17,7 @@ public class User {
     }
 
 
+    // FIXME: po co tyle miejsca
 
 
     public String getUsername() {

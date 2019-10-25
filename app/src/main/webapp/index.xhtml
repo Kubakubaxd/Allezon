@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/composite">
+<h:head>
+    <h:outputStylesheet name="main.css" library="css" />
+</h:head>
+
+<h:body>
+    Hi, #{loginController.username}! <p/>
+
+    Firstname: #{loginController.firstname} <p/>
+    Surname: #{loginController.surname} <p/>
+    Email: #{loginController.email} <p/>
+    Birthdate: #{loginController.date} <p/>
+
+
+
+    <h:form>
+    <h:commandButton value="Logout" action="#{loginController.logout}"
+                     styleClass="btn btn-primary"/>
+    </h:form>
+
+
+</h:body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+</h:head>
+
+<h:body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="pt-5 mx-auto">
+                <div class="card">
+                    <h3 class="card-header"><b>T(white)r</b></h3>
+                    <div class="card-body">
+
+                        <h:form action="LoginServlet3" method="post">
+                            <div class="form-group">
+                                <label>Login</label>
+                                <h:inputText styleClass="form-control" value="#{loginRequest.username}" name="username"
+                                             id="username"/>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <h:inputSecret styleClass="form-control" value="#{loginRequest.password}"
+                                               name="password" id="password"/><br/>
+                            </div>
+                            <h:commandButton value="Login" action="#{loginController.login}"
+                                             styleClass="btn btn-primary"/>
+
+                        </h:form>
+                        <a href="register.xhtml">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</h:body>
+</html>

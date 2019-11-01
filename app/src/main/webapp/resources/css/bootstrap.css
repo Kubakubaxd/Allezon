@@ -2424,6 +2424,7 @@ fieldset:disabled a.btn {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
+  text-align: right !important;
 }
 
 .btn-primary:hover {
@@ -4155,9 +4156,7 @@ input[type="button"].btn-block {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-}
-
+  padding: 0.5rem 1rem
 .navbar > .container,
 .navbar > .container-fluid {
   display: -ms-flexbox;
@@ -4583,6 +4582,7 @@ input[type="button"].btn-block {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+  display: flex;
 }
 
 .card-title {

@@ -5,51 +5,23 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServlet;
 import java.io.Serializable;
 
-
-
 @Named
 @RequestScoped
 
-public class LoginRequest extends HttpServlet implements Serializable  {
-
+public class LoginRequest extends HttpServlet implements Serializable {
     private String username;
     private String password;
-
-    // FIXME: nieuzywana funkcja
-    private boolean checkUser(String username, String password){
-        if (username.compareTo("test") == 0 && password.compareTo("test") == 0)
-            return true;
-            else return false;
-    }
-    // FIXME: nieuzywana funkcja
-    private void createSession(){
-
-    }
-
-
-    // FIXME: po co tyle miejsca?
-
 
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) { this.username = username; }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void redirect(){
-       // if(Register.userDB.checkUserPassword(username,password)
-
-    }
-
-
 }
 
 

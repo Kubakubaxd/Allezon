@@ -20,21 +20,26 @@
 
                         <h:form action="LoginServlet3" method="post">
                             <div class="form-group">
-                                <label>Login</label>
+
+                                <h:outputText value="Login"/>
                                 <h:inputText styleClass="form-control" value="#{loginRequest.username}" name="username"
                                              id="username"/>
-
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
+                                <h:outputText value="Password"/>
                                 <h:inputSecret styleClass="form-control" value="#{loginRequest.password}"
                                                name="password" id="password"/><br/>
                             </div>
+
                             <h:commandButton value="Login" action="#{loginController.login}"
                                              styleClass="btn btn-primary"/>
-
                         </h:form>
-                        <a href="register.xhtml">Register</a>
+
+                        <h:form>
+                        <h:commandButton value="Register" action="register.xhtml" styleClass="btn btn-primary"/>
+                        </h:form>
+
+                        <h:outputText value="Wrong username or password!" rendered="#{loginModel.loginWrong}" style="color:red;margin:8px;"/>
                     </div>
                 </div>
             </div>

@@ -9,20 +9,12 @@
 </h:head>
 <!-- FIXME: powinno byc w osobnych h:outputText   -->
 <h:body>
-    Hi, #{loginController.username}! <p/>
-
-    Firstname: #{loginController.firstname} <p/>
-    Surname: #{loginController.surname} <p/>
-    Email: #{loginController.email} <p/>
-    Birthdate: #{loginController.date} <p/>
-
+    <h:outputText value="Hi, #{sessionAsk.username}!"> </h:outputText>
 
 
     <h:form>
     <h:commandButton value="Logout" action="#{loginController.logout}"
                      styleClass="btn btn-primary"/>
     </h:form>
-
-
 </h:body>
 </html>

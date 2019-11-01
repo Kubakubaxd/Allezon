@@ -29,65 +29,79 @@
                     <div class="card-body">
 
                         <h:form>
-                        <div class="form-group">
-                            <label>Firstname</label>
-                            <h:inputText styleClass="form-control" value="#{register.firstname}" name="firstname"
-                                         id="firstname">
-                                <f:validateLength minimum="3" maximum="50"/>
-                                <f:validateRegex pattern="^[_A-z0-9]*((-|\s)*[_A-z0-9])*$"/>
-                            </h:inputText><br/>
-                        </div>
-                        <div class="form-group">
-                            <label>Surname</label>
-                            <h:inputText styleClass="form-control" value="#{register.surname}" name="surname"
-                                         id="surname">
-                                <f:validateLength minimum="3" maximum="50"/>
-                                <f:validateRegex pattern="^[_A-z0-9]*((-|\s)*[_A-z0-9])*$"/>
-                            </h:inputText>
-                        </div>
-                        <div class="form-group">
-                            <label>Username</label>
-                            <h:inputText styleClass="form-control" value="#{register.username}" name="login"
-                                         id="login">
-                                <p/><f:validateLength minimum="3" maximum="15"/>
-                                <f:validateRegex pattern="^[_a-z0-9]*((-|\s)*[_a-z0-9])*$"/>
-                            </h:inputText><br/>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <h:inputSecret styleClass="form-control" value="#{register.password}" name="password"
-                                           id="passwordRegister">
-                                <f:validateRegex
-                                        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&amp;+=])(?=\S+$).{5,}$"/>
-                            </h:inputSecret><br/>
-                            <!-- FIXME: zgodnie z zadaniem: Haslo powinno wymagac potwierdzenia. -->
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <h:inputText styleClass="form-control" value="#{register.email}" name="email"
-                                         id="email">
-                                <f:validateRegex
-                                        pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"/>
-                            </h:inputText>
-                        </div>
+                            <div class="form-group">
+                                <h:outputText value="Firstname"/>
+                                <h:inputText styleClass="form-control" value="#{register.firstname}" name="firstname"
+                                             id="firstname">
+                                    <f:validateLength minimum="3" maximum="50"/>
+                                    <f:validateRegex pattern="^[_A-z0-9]*((-|\s)*[_A-z0-9])*$"/>
+                                </h:inputText>
+                                <h:messages for="firstname" style="color:red;margin:8px;"/>
 
-                        <div class="form-group">
-                            <label>Birthdate DD/MM/YY</label>
-                            <h:inputText styleClass="form-control" value="#{register.date}" name="date" id="date">
-                                <f:validateRegex pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$"/>
-                            </h:inputText>
-                        </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputText value="Surname"/>
+                                <h:inputText styleClass="form-control" value="#{register.surname}" name="surname"
+                                             id="surname">
+                                    <f:validateLength minimum="3" maximum="50"/>
+                                    <f:validateRegex pattern="^[_A-z0-9]*((-|\s)*[_A-z0-9])*$"/>
+                                </h:inputText>
+                                <h:messages for="surname" style="color:red;margin:8px;"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputText value="Username"/>
+                                <h:inputText styleClass="form-control" value="#{register.username}" name="username"
+                                             id="username">
+                                    <p/><f:validateLength minimum="3" maximum="15"/>
+                                    <f:validateRegex pattern="^[_a-z0-9]*((-|\s)*[_a-z0-9])*$"/>
+                                </h:inputText>
+                                <h:messages for="username" style="color:red;margin:8px;"/>
+                                <h:outputText value="User with that username exists!" rendered="#{register.usernameWrong}" style="color:red;margin:8px;"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputText value="Password"/>
+                                <h:inputSecret styleClass="form-control" value="#{register.password}" name="password"
+                                               id="password">
+                                    <f:validateRegex
+                                            pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$"/>
+                                </h:inputSecret>
+                                <h:messages for="password" style="color:red;margin:8px;"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputText value="Repeat password"/>
+                                <h:inputSecret styleClass="form-control" value="#{register.repassword}"
+                                               name="repassword" id="repassword">
+                                </h:inputSecret>
+                                <h:messages for="repassword" style="color:red;margin:8px;"/>
+                                <h:outputText value="Passwords are not identical" rendered="#{register.repasswordWrong}" style="color:red;margin:8px;"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputText value="E-mail"/>
+                                <h:inputText styleClass="form-control" value="#{register.email}" name="email"
+                                             id="email">
+                                    <f:validateRegex
+                                            pattern="^[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"/>
+                                </h:inputText>
+                                <h:messages for="email" style="color:red;margin:8px;"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputText value="Birthdate"/>
+                                <h:inputText styleClass="form-control" value="#{register.date}" name="birthdate"
+                                             id="birthdate">
+                                    <f:validateRegex
+                                            pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$"/>
+                                </h:inputText>
+                                <h:messages for="birthdate" style="color:red;margin:8px;"/>
+                            </div>
 
+                            <h:commandButton value="Register me!" action="#{register.redirect}"
+                                             styleClass="btn btn-primary"/>
+                        </h:form>
 
-                    <h:commandButton value="Register me!" action="#{register.redirect}"
-                                     styleClass="btn btn-primary"/>
-                </h:form>
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-
-        </h:body>
-        </html>
+</h:body>
+</html>

@@ -62,7 +62,6 @@ public class UserspsqlRepository {
         UserspsqlEntity userspsqlEntity = em.find(UserspsqlEntity.class, username);
         if (userspsqlEntity == null) return false;
         else return true;
-
     }
 
     public UserspsqlEntity giveUser(String username){

@@ -40,7 +40,7 @@ public class Register implements Serializable {
             userspsqlRepository.createUser(newUser);
             repasswordWrong = false;
             usernameWrong = false;
-            return false;
+            return true;
         }
         else if(!userDB.checkIfUserExist(username) ) {
             System.out.println("Zakładam konto w bazie");

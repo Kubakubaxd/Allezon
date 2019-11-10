@@ -3,9 +3,9 @@
 
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/composite">
+      xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-    <h:outputStylesheet name="main.css" library="css" />
+    <h:outputStylesheet name="main.css" library="css"/>
 </h:head>
 <!-- FIXME: powinno byc w osobnych h:outputText   -->
 <h:body>
@@ -13,14 +13,24 @@
 
 
     <h:form>
-    <h:commandButton value="Logout" action="#{loginController.logout}"
-                     styleClass="btn btn-primary"/>
+        <h:commandButton value="Logout" action="#{loginController.logout}"
+                         styleClass="btn btn-primary"/>
     </h:form>
 
     <h:form>
-    <h:commandLink action = "auction" value = "auction">
+        <h:commandButton value="Create section" action="#{sectionRepository.createSection}"
+                         styleClass="btn btn-primary"/>
+    </h:form>
 
-    </h:commandLink>
+    <h:form>
+        <h:commandButton value="Create auction" action="#{auctionRepository.createAuctionTest}"
+                         styleClass="btn btn-primary"/>
+    </h:form>
+
+    <h:form>
+        <h:commandLink action="auction" value="auction"/>
+
+        <h:commandLink action="section" value="section"/>
     </h:form>
 </h:body>
 </html>

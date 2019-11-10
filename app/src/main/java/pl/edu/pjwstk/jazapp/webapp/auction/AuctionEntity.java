@@ -18,6 +18,10 @@ public class AuctionEntity {
         this.price = price;
     }
 
+    public AuctionEntity() {
+
+    }
+
     public int getId() {
         return id;
     }

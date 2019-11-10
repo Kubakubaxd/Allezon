@@ -29,4 +29,5 @@ dependencies {
     implementation 'org.springframework.security:spring-security-crypto:5.2.0.RELEASE'
 
     testImplementation 'junit:junit:4.12'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
 }

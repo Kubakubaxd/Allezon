@@ -1,11 +1,13 @@
 package pl.edu.pjwstk.jazapp.webapp.auction;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-@ApplicationScoped
+@Named
+@RequestScoped
 public class AuctionRepository {
     @PersistenceContext
     private EntityManager em;
@@ -19,14 +21,17 @@ public class AuctionRepository {
     }
 
     @Transactional
-    boolean createAuction(AuctionEntity auctionEntity) {
-        if (!isAuctionExist(auctionEntity)) {
-            System.out.println("KROK 4 <-------------------------------");
-            AuctionEntity test = new AuctionEntity("test" , 1 ,1 );
-            em.persist(test);
-            System.out.println("KROK 5 <-------------------------------");
-            return true;
-        } else return false;
+    void createAuction(AuctionEntity auctionEntity) {
+        //if (!isAuctionExist(auctionEntity)) {
+            em.persist(auctionEntity);
+          //  System.out.println("KROK 5 <-------------------------------");
+        //}
+    }
+
+    @Transactional
+    public void createAuctionTest(){
+        AuctionEntity auctionEntity = new AuctionEntity("Test", 2,2);
+        em.persist(auctionEntity);
     }
 
     @Transactional

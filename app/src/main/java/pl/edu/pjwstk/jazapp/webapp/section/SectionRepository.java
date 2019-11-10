@@ -20,4 +20,9 @@ public class SectionRepository {
         em.persist(sectionEntity);
     }
 
+    @Transactional
+    public void createSection(SectionEntity sectionEntity){
+        em.persist(sectionEntity);
+    }
+
 }

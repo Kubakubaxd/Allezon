@@ -1,6 +1,9 @@
 package pl.edu.pjwstk.jazapp.webapp.auction;
 
+import pl.edu.pjwstk.jazapp.webapp.section.SectionModel;
+
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,11 +14,10 @@ import javax.transaction.Transactional;
 public class AuctionRepository {
     @PersistenceContext
     private EntityManager em;
-
-    //TODO: checkIfSection_IdExist
-    public boolean checkIfSession_IdExist(){
-        return true;
-    }
+    @Inject
+    SectionModel sectionModel;
+    @Inject
+    AuctionRequest auctionRequest;
 
     @Transactional
     public boolean isAuctionExist(AuctionEntity auctionEntity) {
@@ -26,11 +28,12 @@ public class AuctionRepository {
     }
 
     @Transactional
-    void createAuction(AuctionEntity auctionEntity) {
-        //if (!isAuctionExist(auctionEntity)) {
+    public void createAuction() {
+        if(sectionModel.isSectionExist(auctionRequest.getSectionId())) {
+            AuctionEntity auctionEntity = new AuctionEntity(auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
             em.persist(auctionEntity);
-          //  System.out.println("KROK 5 <-------------------------------");
-        //}
+        }
+
     }
 
     @Transactional

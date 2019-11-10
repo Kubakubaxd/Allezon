@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.jazapp.webapp.section;
 
+import pl.edu.pjwstk.jazapp.webapp.auction.AuctionEntity;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -23,6 +25,12 @@ public class SectionRepository {
     @Transactional
     public void createSection(SectionEntity sectionEntity){
         em.persist(sectionEntity);
+    }
+
+    @Transactional
+    public boolean isSectionExist(int id){
+        SectionEntity search = em.find(SectionEntity.class, id);
+        return search != null;
     }
 
 

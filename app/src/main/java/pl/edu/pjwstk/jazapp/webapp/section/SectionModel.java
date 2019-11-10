@@ -16,4 +16,8 @@ public class SectionModel {
         SectionEntity sectionEntity = new SectionEntity(sectionRequest.getName());
         sectionRepository.createSection(sectionEntity);
     }
+
+    public boolean isSectionExist(int id){
+        return sectionRepository.isSectionExist(id);
+    }
 }

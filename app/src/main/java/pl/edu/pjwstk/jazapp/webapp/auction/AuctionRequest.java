@@ -13,17 +13,7 @@ public class AuctionRequest {
     private int sectionId;
     private int  price;
 
-    @Inject
-    AuctionRepository auctionRepository;
 
-    public boolean createAuction(){
-        System.out.println("KROK 0 <-------------------------------");
-        AuctionEntity auctionEntity = new AuctionEntity(description,sectionId, price);
-        System.out.println("KROK 00 <-------------------------------");
-        auctionRepository.createAuction(auctionEntity);
-        System.out.println("KROK 1 <-------------------------------");
-        return true;
-    }
 
     public String getDescription() {
         return description;
@@ -49,11 +39,4 @@ public class AuctionRequest {
         this.price = price;
     }
 
-    public AuctionRepository getAuctionRepository() {
-        return auctionRepository;
-    }
-
-    public void setAuctionRepository(AuctionRepository auctionRepository) {
-        this.auctionRepository = auctionRepository;
-    }
 }

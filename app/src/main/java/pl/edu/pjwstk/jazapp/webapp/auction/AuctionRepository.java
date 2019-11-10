@@ -12,7 +12,12 @@ public class AuctionRepository {
     @PersistenceContext
     private EntityManager em;
 
-    //@Transactional
+    //TODO: checkIfSection_IdExist
+    public boolean checkIfSession_IdExist(){
+        return true;
+    }
+
+    @Transactional
     public boolean isAuctionExist(AuctionEntity auctionEntity) {
         System.out.println("KROK 2 <-------------------------------");
         AuctionEntity search = em.find(AuctionEntity.class, auctionEntity.getId());
@@ -30,7 +35,7 @@ public class AuctionRepository {
 
     @Transactional
     public void createAuctionTest(){
-        AuctionEntity auctionEntity = new AuctionEntity("Test", 2,2);
+        AuctionEntity auctionEntity = new AuctionEntity("Test", 4,2);
         em.persist(auctionEntity);
     }
 

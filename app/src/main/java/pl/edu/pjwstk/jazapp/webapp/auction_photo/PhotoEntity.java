@@ -6,12 +6,13 @@ import javax.persistence.*;
 @Table(name = "auction_photo")
 public class PhotoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String link;
 
-    public PhotoEntity(String name) {
-        this.link = name;
+
+    public PhotoEntity(int id, String link) {
+        this.id = id;
+        this.link = link;
     }
 
     public PhotoEntity() {

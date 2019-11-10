@@ -13,7 +13,7 @@ public class PhotoModel {
     PhotoRepository photoRepository;
 
     public void createPhoto(){
-        PhotoEntity photoEntity = new PhotoEntity(photoRequest.getLink());
+        PhotoEntity photoEntity = new PhotoEntity(photoRequest.getId(),photoRequest.getLink());
         photoRepository.createPhoto(photoEntity);
     }
 }

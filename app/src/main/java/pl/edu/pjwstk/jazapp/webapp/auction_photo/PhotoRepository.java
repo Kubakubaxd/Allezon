@@ -13,11 +13,6 @@ public class PhotoRepository {
     @PersistenceContext
     private EntityManager em;
 
-    @Transactional
-    public void createPhoto(){
-        PhotoEntity photoEntity = new PhotoEntity("hehe");
-        em.persist(photoEntity);
-    }
 
     @Transactional
     public void createPhoto(PhotoEntity photoEntity){

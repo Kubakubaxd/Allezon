@@ -32,7 +32,7 @@ CREATE TABLE auction
 
 CREATE TABLE auction_photo
 (
-    auction_id INT REFERENCES auction(id),
+    auction_id BIGINT REFERENCES auction(id),
     link VARCHAR (50)
 );
 

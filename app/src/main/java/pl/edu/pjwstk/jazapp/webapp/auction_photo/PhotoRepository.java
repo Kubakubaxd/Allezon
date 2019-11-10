@@ -1,6 +1,7 @@
 package pl.edu.pjwstk.jazapp.webapp.auction_photo;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import javax.transaction.Transactional;
 public class PhotoRepository {
     @PersistenceContext
     private EntityManager em;
+
 
 
     @Transactional

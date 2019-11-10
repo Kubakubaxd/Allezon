@@ -28,6 +28,13 @@ public class AuctionRepository {
     }
 
     @Transactional
+    public boolean isAuctionExist(int id){
+        AuctionEntity search = em.find(AuctionEntity.class, id);
+        return !(search == null);
+    }
+
+
+    @Transactional
     public void createAuction() {
         if(sectionModel.isSectionExist(auctionRequest.getSectionId())) {
             AuctionEntity auctionEntity = new AuctionEntity(auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
@@ -42,33 +49,33 @@ public class AuctionRepository {
         em.persist(auctionEntity);
     }
 
-    @Transactional
-    public boolean changeDescription(AuctionEntity auctionEntity, String description) {
-        if (!isAuctionExist(auctionEntity)) {
-            auctionEntity.setDescription(description);
-            em.persist(auctionEntity);
-            return true;
-        } else return false;
-    }
+//    @Transactional
+//    public boolean changeDescription(AuctionEntity auctionEntity, String description) {
+//        if (!isAuctionExist(auctionEntity)) {
+//            auctionEntity.setDescription(description);
+//            em.persist(auctionEntity);
+//            return true;
+//        } else return false;
+//    }
 
-    @Transactional
-    public boolean changeSection(AuctionEntity auctionEntity, int section_id) {
-        if (!isAuctionExist(auctionEntity)) {
-            auctionEntity.setSection_id(section_id);
-            em.persist(auctionEntity);
-            return true;
-        } else return false;
-    }
+//    @Transactional
+//    public boolean changeSection(AuctionEntity auctionEntity, int section_id) {
+//        if (!isAuctionExist(auctionEntity)) {
+//            auctionEntity.setSection_id(section_id);
+//            em.persist(auctionEntity);
+//            return true;
+//        } else return false;
+//    }
 
     @Transactional
     public boolean changePrice(AuctionEntity auctionEntity, int price) {
-
         if (!isAuctionExist(auctionEntity)) {
             auctionEntity.setPrice(price);
             em.persist(auctionEntity);
             return true;
         } else return false;
     }
+
 
 }
 

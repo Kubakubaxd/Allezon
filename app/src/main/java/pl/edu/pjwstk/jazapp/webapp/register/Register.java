@@ -1,7 +1,7 @@
 package pl.edu.pjwstk.jazapp.webapp.register;
 
-import pl.edu.pjwstk.jazapp.webapp.DB.User;
-import pl.edu.pjwstk.jazapp.webapp.DB.UserDB;
+import pl.edu.pjwstk.jazapp.webapp.localuser.User;
+import pl.edu.pjwstk.jazapp.webapp.localuser.UserDB;
 import pl.edu.pjwstk.jazapp.webapp.auth.UserspsqlEntity;
 import pl.edu.pjwstk.jazapp.webapp.auth.UserspsqlRepository;
 

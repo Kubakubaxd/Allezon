@@ -1,6 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.auth;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pl.edu.pjwstk.jazapp.webapp.DB.User;
+import pl.edu.pjwstk.jazapp.webapp.localuser.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

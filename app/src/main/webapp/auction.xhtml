@@ -25,7 +25,7 @@
         <h:inputText styleClass="form-control" value="#{auctionRequest.price}" name="price"
                      id="price"/>
     </div>
-    <h:commandButton value="Create!" action="#{auctionRepository.createAuction()}"
+    <h:commandButton value="Create!" action="#{auctionModel.create}"
                      styleClass="btn btn-primary"/>
 </h:form>
 

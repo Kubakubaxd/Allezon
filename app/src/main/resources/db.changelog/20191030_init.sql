@@ -22,7 +22,7 @@ CREATE TABLE section
 
 CREATE TABLE auction
 (
-    id BIGSERIAL,
+    id BIGSERIAL NOT NULL,
     description VARCHAR (250),
     section_id BIGINT REFERENCES section(id),
     price INT,
@@ -30,7 +30,7 @@ CREATE TABLE auction
     PRIMARY KEY (id)
 );
 
-CREATE TABLE auction_photo
+CREATE TABLE photo
 (
     auction_id BIGINT REFERENCES auction(id),
     link VARCHAR (50)
@@ -50,5 +50,3 @@ CREATE TABLE action_parameter
     parameter_id BIGINT REFERENCES parameter(id),
     value VARCHAR (30)
 );
-
-

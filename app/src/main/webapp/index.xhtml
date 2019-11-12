@@ -17,27 +17,14 @@
                          styleClass="btn btn-primary"/>
     </h:form>
 
-    <h:form>
-        <h:commandButton value="Create section" action="#{sectionRepository.createSection}"
-                         styleClass="btn btn-primary"/>
-    </h:form>
 
     <h:form>
-        <h:commandButton value="Create auction" action="#{auctionRepository.createAuctionTest}"
-                         styleClass="btn btn-primary"/>
-    </h:form>
-
-    <h:form>
-        <h:commandButton value="Create photo" action="#{photoModel.createPhotoTest}"
-                         styleClass="btn btn-primary"/>
-    </h:form>
-
-    <h:form>
-        <h:commandLink action="auction" value="auction"/>
-
-        <h:commandLink action="section" value="section"/>
-
-        <h:commandLink action="photo" value="auction_photo"/>
+        <h:commandLink action="auction" value="Create auction"/>
+        <br/>
+        <h:commandLink action="section" value="Create section"/>
+        <br/>
+        <h:commandLink action="photo" value="Create photo"/>
+        <br/>
     </h:form>
 </h:body>
 </html>

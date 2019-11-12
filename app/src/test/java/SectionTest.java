@@ -1,11 +1,8 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.edu.pjwstk.jazapp.webapp.auction.AuctionRepository;
-import pl.edu.pjwstk.jazapp.webapp.section.SectionEntity;
-import pl.edu.pjwstk.jazapp.webapp.section.SectionRepository;
-
-import javax.persistence.EntityManager;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SectionTest {

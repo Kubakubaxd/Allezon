@@ -1,20 +1,14 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.parameter;
 
-import javax.persistence.*;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@Entity
-@Table(name = "parameter")
-public class ParameterEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@Named
+@RequestScoped
+public class ParameterRequest {
     private int id;
     private String name;
-
-    public ParameterEntity(String name) {
-        this.name = name;
-    }
-
-    public ParameterEntity() { }
 
     public int getId() {
         return id;

@@ -8,16 +8,36 @@ import javax.transaction.Transactional;
 
 @Named
 @RequestScoped
-//@ApplicationScoped
 public class PhotoRepository {
     @PersistenceContext
     private EntityManager em;
 
-
-
     @Transactional
-    public void createPhoto(PhotoEntity photoEntity){
+    public void create(PhotoEntity photoEntity) {
         em.persist(photoEntity);
     }
 
+    @Transactional
+    public boolean isExist(int auction_id) {
+        PhotoEntity search = em.find(PhotoEntity.class, auction_id);
+        return !(search == null);
+    }
+
+    @Transactional
+    public void editLink(String link, int auction_id) {
+        if (isExist(auction_id)) {
+            PhotoEntity photoEntity = em.find(PhotoEntity.class, auction_id);
+            photoEntity.setLink(link);
+            em.persist(photoEntity);
+        }
+    }
+
+    @Transactional
+    public void editAuction_Id(int new_id, int auction_id) {
+        if (isExist(auction_id)) {
+            PhotoEntity photoEntity = em.find(PhotoEntity.class, auction_id);
+            photoEntity.setAuction_id(new_id);
+            em.persist(photoEntity);
+        }
+    }
 }

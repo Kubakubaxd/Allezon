@@ -13,12 +13,6 @@ public class AuctionRepository {
     private EntityManager em;
 
     @Transactional
-    public boolean isExist(AuctionEntity auctionEntity) {
-        AuctionEntity search = em.find(AuctionEntity.class, auctionEntity.getId());
-        return !(search == null);
-    }
-
-    @Transactional
     public boolean isExist(int id) {
         AuctionEntity search = em.find(AuctionEntity.class, id);
         return !(search == null);
@@ -30,26 +24,36 @@ public class AuctionRepository {
     }
 
     @Transactional
-    public void edit(AuctionEntity auctionEntity){
+    public void edit(AuctionEntity auctionEntity, int id) {
+        auctionEntity.setId(id);
         em.persist(auctionEntity);
     }
 
     @Transactional
-    public void editDescription(AuctionEntity auctionEntity, String description) {
-        auctionEntity.setDescription(description);
-        em.persist(auctionEntity);
+    public void editDescription(int id, String description) {
+        if (isExist(id)) {
+            AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
+            auctionEntity.setDescription(description);
+            em.persist(auctionEntity);
+        }
     }
 
     @Transactional
-    public void editSection(AuctionEntity auctionEntity, int section_id) {
-        auctionEntity.setSection_id(section_id);
-        em.persist(auctionEntity);
+    public void editSection(int id, int section_id) {
+        if (isExist(id)) {
+            AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
+            auctionEntity.setSection_id(section_id);
+            em.persist(auctionEntity);
+        }
     }
 
     @Transactional
-    public void editPrice(AuctionEntity auctionEntity, int price) {
-        auctionEntity.setPrice(price);
-        em.persist(auctionEntity);
+    public void editPrice(int id, int price) {
+        if (isExist(id)) {
+            AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
+            auctionEntity.setPrice(price);
+            em.persist(auctionEntity);
+        }
     }
 
     @Transactional
@@ -57,16 +61,6 @@ public class AuctionRepository {
         AuctionEntity auctionEntity = new AuctionEntity("Test", 4, 2);
         em.persist(auctionEntity);
     }
-
-    //    @Transactional
-//    public void createAuction() {
-//        if(sectionModel.isSectionExist(auctionRequest.getSectionId())) {
-//            AuctionEntity auctionEntity = new AuctionEntity(auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
-//            em.persist(auctionEntity);
-//        }
-//
-//    }
-
 }
 
 

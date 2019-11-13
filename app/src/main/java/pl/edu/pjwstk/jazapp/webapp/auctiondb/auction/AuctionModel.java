@@ -16,10 +16,11 @@ public class AuctionModel {
             auctionRepository.create(auctionRequest.getAuctionEntity());
     }
 
-//    public boolean edit(){
-//        if(auctionRepository.isExist(auctionRequest.getId())){
-//
-//        }
-//    }
+    public void edit() {auctionRepository.edit(auctionRequest.getAuctionEntity(), auctionRequest.getId());}
 
+    public void editDescription() {auctionRepository.editDescription(auctionRequest.getId(), auctionRequest.getDescription());}
+
+    public void editSection() {auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());}
+
+    public void editPrice() {auctionRepository.editPrice(auctionRequest.getId(),auctionRequest.getPrice());}
 }

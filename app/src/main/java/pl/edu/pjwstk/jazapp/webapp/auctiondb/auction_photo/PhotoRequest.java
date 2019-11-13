@@ -8,25 +8,20 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class PhotoRequest {
-    @Inject
-    private PhotoRepository photoRepository;
+    private int id;
+    private String link;
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getLink() {
         return link;
     }
-
     public void setLink(String link) {
         this.link = link;
     }
-
-    private int id;
-    private String link;
+    public PhotoEntity getPhotoEntity () { return new PhotoEntity(id,link); }
 }

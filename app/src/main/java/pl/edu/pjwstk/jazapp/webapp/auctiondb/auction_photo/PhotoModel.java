@@ -13,19 +13,11 @@ public class PhotoModel {
     PhotoRequest photoRequest;
     @Inject
     PhotoRepository photoRepository;
-    @Inject
-    AuctionModel auctionModel;
 
-    public void createPhoto(){
-        //if(auctionModel.isAuctionExist(photoRequest.getId())) {
-        System.out.println("Tworze " + photoRequest.getId() + " + " + photoRequest.getLink() );
-            PhotoEntity photoEntity = new PhotoEntity(photoRequest.getId(), photoRequest.getLink());
-            photoRepository.createPhoto(photoEntity);
-        //}
-    }
+    public void create(){photoRepository.create(photoRequest.getPhotoEntity());}
 
-    public void createPhotoTest(){
-        PhotoEntity photoEntity = new PhotoEntity(6,"hehe");
-        photoRepository.createPhoto(photoEntity);
-    }
+    public void editAuction_Id(){photoRepository.editAuction_Id(photoRequest.getId(), photoRequest.getId());}
+
+    public void editLink(){photoRepository.editLink(photoRequest.getLink(),photoRequest.getId());}
+
 }

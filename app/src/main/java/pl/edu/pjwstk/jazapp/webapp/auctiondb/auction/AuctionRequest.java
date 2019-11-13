@@ -7,7 +7,7 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class AuctionRequest {
-    private int id = 0;
+    private int id;
     private String description;
     private int sectionId;
     private int  price;

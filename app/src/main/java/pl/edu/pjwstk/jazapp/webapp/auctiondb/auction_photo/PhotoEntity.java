@@ -16,6 +16,7 @@ public class PhotoEntity {
 
     public PhotoEntity() { }
 
+
     public int getAuction_id() {
         return auction_id;
     }

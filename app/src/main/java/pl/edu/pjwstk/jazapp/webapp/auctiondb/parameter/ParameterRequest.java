@@ -9,7 +9,14 @@ import javax.inject.Named;
 public class ParameterRequest {
     private int id;
     private String name;
+    private int newId;
 
+    public int getNewId() {
+        return newId;
+    }
+    public void setNewId(int newId) {
+        this.newId = newId;
+    }
     public int getId() {
         return id;
     }

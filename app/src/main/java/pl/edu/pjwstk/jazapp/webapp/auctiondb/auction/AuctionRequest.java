@@ -2,6 +2,7 @@ package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Named;
 
 @Named

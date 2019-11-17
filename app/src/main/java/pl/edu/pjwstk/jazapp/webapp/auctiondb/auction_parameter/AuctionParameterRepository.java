@@ -26,4 +26,11 @@ public class AuctionParameterRepository {
         AuctionParameterId entity = new AuctionParameterId(auction_id,parameter_id, value);
         em.persist(entity);
     }
+
+    @Transactional
+    public void created(int auction_id, int parameter_id, String value){
+        AuctionParameterValue entity = new AuctionParameterValue();
+        em.persist(entity);
+    }
+
 }

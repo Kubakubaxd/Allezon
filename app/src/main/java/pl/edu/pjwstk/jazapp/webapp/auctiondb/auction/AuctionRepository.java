@@ -1,6 +1,9 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
+
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +12,8 @@ import javax.transaction.Transactional;
 @Named
 @RequestScoped
 public class AuctionRepository {
+    @Inject
+    SectionRepository sectionRepository;
     @PersistenceContext
     private EntityManager em;
 
@@ -20,7 +25,8 @@ public class AuctionRepository {
 
     @Transactional
     public void create(AuctionEntity auctionEntity) {
-        em.persist(auctionEntity);
+        if (sectionRepository.isSectionExist(auctionEntity.getSection_id()))
+            em.persist(auctionEntity);
     }
 
     @Transactional

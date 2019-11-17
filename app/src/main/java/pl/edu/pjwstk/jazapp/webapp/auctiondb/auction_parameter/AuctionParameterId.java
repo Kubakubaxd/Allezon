@@ -12,7 +12,6 @@ public class AuctionParameterId implements Serializable {
     @Column(columnDefinition = "parameter_id")
     private int parameter_id;
 
-    @Column(columnDefinition = "value")
     private String value;
 
     public AuctionParameterId(int auction_id, int parameter_id, String value) {

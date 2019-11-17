@@ -1,8 +1,9 @@
-package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
+package pl.edu.pjwstk.jazapp.webapp.auctiondb.auctiontest;
 
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "auction")
@@ -28,35 +29,5 @@ public class AuctionEntityTest {
 
     }
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public SectionEntity getSection() {
-//        return section;
-//    }
-//
-//    public void setSection(SectionEntity section) {
-//        this.section = section;
-//    }
-//
-//    public int getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(int price) {
-//        this.price = price;
-//    }
+
 }

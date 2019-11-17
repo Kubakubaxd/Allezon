@@ -1,6 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auctiontest;
 
-import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction.AuctionEntityTest;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auctiontest.AuctionEntityTest;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
 
@@ -38,12 +38,16 @@ public class AuctionRepositoryTest {
     }
 
     @Transactional
-    public String getDescription() throws NoSuchFieldException {
-        AuctionEntityTest entity = em.find(AuctionEntityTest.class, 25);
-        Field field = AuctionEntityTest.class.getField("price");
+    public void getDescription() throws NoSuchFieldException, IllegalAccessException {
+        AuctionEntityTest entity = em.find(AuctionEntityTest.class, 2);
+        Field field = AuctionEntityTest.class.getDeclaredField("description");
 
-        System.out.println("DESCRIPTION: " + field.toString() );
-        return field.toString();
+        field.setAccessible(true);
+
+        String desc = new String();
+        field.get(desc);
+
+        System.out.println("--------->DESC: " + desc);
     }
 
 

@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
-//@Named
+@Named
 @SessionScoped
 public class Register implements Serializable {
     @Inject

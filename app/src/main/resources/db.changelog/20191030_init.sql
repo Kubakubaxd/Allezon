@@ -32,8 +32,11 @@ CREATE TABLE auction
 
 CREATE TABLE photo
 (
+    id BIGINT,
     auction_id BIGINT REFERENCES auction(id),
-    link VARCHAR (50)
+    link VARCHAR,
+
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE parameter
@@ -44,7 +47,7 @@ CREATE TABLE parameter
     PRIMARY KEY (id)
 );
 
-CREATE TABLE action_parameter
+CREATE TABLE auction_parameter
 (
     auction_id BIGINT REFERENCES auction(id),
     parameter_id BIGINT REFERENCES parameter(id),

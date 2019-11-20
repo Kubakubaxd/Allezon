@@ -12,9 +12,7 @@ public class AuctionRequest {
     private int sectionId;
     private int price;
 
-    public AuctionEntity getAuctionEntity() {
-        return new AuctionEntity(description, sectionId, price);
-    }
+
 
     public int getId() {
         return id;

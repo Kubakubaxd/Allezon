@@ -6,8 +6,11 @@ import javax.persistence.*;
 @Table(name = "photo")
 public class PhotoEntity {
     @Id
-    private int auction_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String link;
+    private int auction_id;
+
 
     public PhotoEntity(int auction_id, String link) {
         this.auction_id = auction_id;
@@ -16,7 +19,12 @@ public class PhotoEntity {
 
     public PhotoEntity() { }
 
-
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getAuction_id() {
         return auction_id;
     }

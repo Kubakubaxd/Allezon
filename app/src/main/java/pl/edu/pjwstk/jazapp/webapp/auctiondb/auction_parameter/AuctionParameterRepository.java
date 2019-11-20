@@ -1,5 +1,8 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter;
 
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction.AuctionEntity;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.parameter.ParameterEntity;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -23,7 +26,10 @@ public class AuctionParameterRepository {
 
     @Transactional
     public void create(int auction_id, int parameter_id, String value){
-        AuctionParameterId entity = new AuctionParameterId(auction_id,parameter_id, value);
+        AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
+        ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter_id);
+
+        AuctionParameterValue entity = new AuctionParameterValue(auctionEntity,parameterEntity,value);
         em.persist(entity);
     }
 

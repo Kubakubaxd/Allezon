@@ -1,7 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,15 +12,17 @@ public class AuctionModel {
     @Inject
     AuctionRequest auctionRequest;
 
-    public void create(){
-            auctionRepository.create(auctionRequest.getAuctionEntity());
+    public void create() {
+        auctionRepository.create(auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
     }
 
-    public void edit() {auctionRepository.edit(auctionRequest.getAuctionEntity(), auctionRequest.getId());}
+    public void edit() {
+        auctionRepository.edit(auctionRequest.getId(), auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
+    }
 
-    public void editDescription() {auctionRepository.editDescription(auctionRequest.getId(), auctionRequest.getDescription());}
-
-    public void editSection() {auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());}
-
-    public void editPrice() {auctionRepository.editPrice(auctionRequest.getId(),auctionRequest.getPrice());}
+//    public void editDescription() {auctionRepository.editDescription(auctionRequest.getId(), auctionRequest.getDescription());}
+//
+//    public void editSection() {auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());}
+//
+//    public void editPrice() {auctionRepository.editPrice(auctionRequest.getId(),auctionRequest.getPrice());}
 }

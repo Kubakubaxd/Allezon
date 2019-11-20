@@ -44,6 +44,7 @@ public class AuctionRepositoryTest {
 
         field.setAccessible(true);
 
+
         String desc = new String();
         field.get(desc);
 

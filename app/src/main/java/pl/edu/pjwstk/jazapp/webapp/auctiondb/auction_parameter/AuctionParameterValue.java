@@ -6,7 +6,7 @@ import pl.edu.pjwstk.jazapp.webapp.auctiondb.parameter.ParameterEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "action_parameter")
+@Table(name = "auction_parameter")
 public class AuctionParameterValue {
 
     @EmbeddedId
@@ -18,13 +18,15 @@ public class AuctionParameterValue {
     private AuctionEntity auctionEntity;
 
     @ManyToOne
-    @JoinColumn(columnDefinition = "value")
+    @JoinColumn(columnDefinition = "parameter_id")
     private ParameterEntity parameterEntity;
 
-    public AuctionParameterValue(AuctionParameterId auctionParameterId, AuctionEntity auctionEntity, ParameterEntity parameterEntity) {
-        this.auctionParameterId = auctionParameterId;
+    private String value;
+
+    public AuctionParameterValue(AuctionEntity auctionEntity, ParameterEntity parameterEntity, String value) {
         this.auctionEntity = auctionEntity;
         this.parameterEntity = parameterEntity;
+        this.value = value;
     }
 
     public AuctionParameterValue() {
@@ -53,5 +55,13 @@ public class AuctionParameterValue {
 
     public void setParameterEntity(ParameterEntity parameterEntity) {
         this.parameterEntity = parameterEntity;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

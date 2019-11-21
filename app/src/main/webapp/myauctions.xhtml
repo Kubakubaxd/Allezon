@@ -13,10 +13,16 @@
 
     <h:form>
         <c:forEach var="item" items="#{auctionRepository.allAuctions}">
-            <h:outputText value="WOWO"/><br/>
             <h:outputText value="#{item.section.name}"/><br/>
             <h:outputText value="#{item.description}"/><br/>
             <h:outputText value="#{item.price}"/><br/><br/>
+
+            <c:forEach var="photo" items="#{item.photoEntityList}">
+                <h:outputText value="VAL: #{photo.link}"/><br/>
+
+            </c:forEach>
+
+
         </c:forEach>
     </h:form>
 

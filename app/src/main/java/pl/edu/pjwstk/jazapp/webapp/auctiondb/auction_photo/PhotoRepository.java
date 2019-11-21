@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -39,5 +40,10 @@ public class PhotoRepository {
             photoEntity.setAuction_id(new_id);
             em.persist(photoEntity);
         }
+    }
+
+
+    public List<PhotoEntity> getPhotosList(int idOfAuction){
+        return em.createQuery("SELECT c FROM PhotoEntity c WHERE c.auction_id = :idauction", PhotoEntity.class).setParameter("idauction", idOfAuction).getResultList();
     }
 }

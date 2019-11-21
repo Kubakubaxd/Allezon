@@ -1,5 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
 
@@ -74,7 +75,10 @@ public class AuctionRepository {
         }
     }
 
+    @Transactional
     public List<AuctionEntity> getAllAuctions(){
         return em.createQuery("FROM AuctionEntity", AuctionEntity.class).getResultList();
     }
+
+
 }

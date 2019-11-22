@@ -79,4 +79,11 @@ public class AuctionEntity {
     public void setPhotoEntityList(List<PhotoEntity> photoEntityList) {
         this.photoEntityList = photoEntityList;
     }
+
+    public String firstPhoto(){
+        if(!photoEntityList.isEmpty())
+            return photoEntityList.get(0).getLink();
+        else
+            return "https://www.computerhope.com/jargon/e/error.gif";
+    }
 }

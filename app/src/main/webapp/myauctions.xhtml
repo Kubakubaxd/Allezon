@@ -9,22 +9,31 @@
 </h:head>
 
 <h:body>
-    <h:outputText value="Hi, #{sessionAsk.username}!"> </h:outputText>
 
-    <h:form>
-        <c:forEach var="item" items="#{auctionRepository.allAuctions}">
-            <h:outputText value="#{item.section.name}"/><br/>
-            <h:outputText value="#{item.description}"/><br/>
-            <h:outputText value="#{item.price}"/><br/><br/>
+    <h:dataTable value="#{auctionRepository.allAuctions}" var="item"
+                 styleClass="order-table"
+                 headerClass="order-table-header"
+                 rowClasses="order-table-odd-row,order-table-even-row"
+    >
+        <h:column>
+            <h:outputText value="Section: #{item.section.name}"/>
+        </h:column>
 
-            <c:forEach var="photo" items="#{item.photoEntityList}">
-                <h:outputText value="VAL: #{photo.link}"/><br/>
+        <h:column>
+            <h:outputText value="Description: #{item.description}"/>
+        </h:column>
 
-            </c:forEach>
+        <h:column>
+            <h:outputText value="Price: #{item.price} PLN"/>
+        </h:column>
+
+        <h:column>
+            <h:graphicImage url="#{item.firstPhoto()}" width="100px" height="100px"/>
+        </h:column>
+
+    </h:dataTable>
 
 
-        </c:forEach>
-    </h:form>
 
 </h:body>
 </html>

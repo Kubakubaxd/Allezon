@@ -21,10 +21,15 @@ public class AuctionEntity {
 
     private int price;
 
-    @JoinColumn(columnDefinition = "auction_id")
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     private List<PhotoEntity> photoEntityList;
 
+    public AuctionEntity(String description, SectionEntity section, int price, List<PhotoEntity> photoEntityList) {
+        this.description = description;
+        this.section = section;
+        this.price = price;
+        this.photoEntityList = photoEntityList;
+    }
 
     public AuctionEntity(String description, SectionEntity section, int price) {
         this.description = description;

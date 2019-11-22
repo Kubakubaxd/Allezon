@@ -14,9 +14,9 @@ public class PhotoModel {
     @Inject
     PhotoRepository photoRepository;
 
-    public void create(){photoRepository.create(photoRequest.getPhotoEntity());}
+    public void create(){photoRepository.create(photoRequest.getId(),photoRequest.getLink());}
 
-    public void editAuction_Id(){photoRepository.editAuction_Id(photoRequest.getId(), photoRequest.getId());}
+    //public void editAuction_Id(){photoRepository.editAuction_Id(photoRequest.getId(), photoRequest.getId());}
 
     public void editLink(){photoRepository.editLink(photoRequest.getLink(),photoRequest.getId());}
 

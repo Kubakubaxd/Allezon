@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo;
 
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction.AuctionEntity;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -19,6 +21,13 @@ public class PhotoRepository {
     }
 
     @Transactional
+    public void create(int auction_id, String link) {
+        AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
+        PhotoEntity photoEntity =  new PhotoEntity(link, auctionEntity);
+        em.persist(photoEntity);
+    }
+
+    @Transactional
     public boolean isExist(int auction_id) {
         PhotoEntity search = em.find(PhotoEntity.class, auction_id);
         return !(search == null);
@@ -33,17 +42,18 @@ public class PhotoRepository {
         }
     }
 
-    @Transactional
-    public void editAuction_Id(int new_id, int auction_id) {
-        if (isExist(auction_id)) {
-            PhotoEntity photoEntity = em.find(PhotoEntity.class, auction_id);
-            photoEntity.setAuction_id(new_id);
-            em.persist(photoEntity);
-        }
-    }
+//    @Transactional
+//    public void editAuction_Id(int new_id, int auction_id) {
+//        if (isExist(auction_id)) {
+//            PhotoEntity photoEntity = em.find(PhotoEntity.class, auction_id);
+//
+//            photoEntity.getAuctionEntity()
+//            em.persist(photoEntity);
+//        }
+//    }
 
 
-    public List<PhotoEntity> getPhotosList(int idOfAuction){
-        return em.createQuery("SELECT c FROM PhotoEntity c WHERE c.auction_id = :idauction", PhotoEntity.class).setParameter("idauction", idOfAuction).getResultList();
-    }
+//    public List<PhotoEntity> getPhotosList(int idOfAuction){
+//        return em.createQuery("SELECT c FROM PhotoEntity c WHERE c.auctionEntity.id = :idauction", PhotoEntity.class).setParameter("idauction", idOfAuction).getResultList();
+//    }
 }

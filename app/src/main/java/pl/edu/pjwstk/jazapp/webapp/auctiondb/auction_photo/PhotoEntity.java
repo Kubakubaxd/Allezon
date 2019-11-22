@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo;
 
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction.AuctionEntity;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,12 +11,14 @@ public class PhotoEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String link;
-    private int auction_id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "auction_id")
+    private AuctionEntity auctionEntity;
 
-    public PhotoEntity(int auction_id, String link) {
-        this.auction_id = auction_id;
+    public PhotoEntity(String link, AuctionEntity auctionEntity) {
         this.link = link;
+        this.auctionEntity = auctionEntity;
     }
 
     public PhotoEntity() { }
@@ -25,12 +29,15 @@ public class PhotoEntity {
     public void setId(int id) {
         this.id = id;
     }
-    public int getAuction_id() {
-        return auction_id;
+
+    public AuctionEntity getAuctionEntity() {
+        return auctionEntity;
     }
-    public void setAuction_id(int auction_id) {
-        this.auction_id = auction_id;
+
+    public void setAuctionEntity(AuctionEntity auctionEntity) {
+        this.auctionEntity = auctionEntity;
     }
+
     public String getLink() {
         return link;
     }

@@ -23,5 +23,5 @@ public class PhotoRequest {
     public void setLink(String link) {
         this.link = link;
     }
-    public PhotoEntity getPhotoEntity () { return new PhotoEntity(id,link); }
+
 }

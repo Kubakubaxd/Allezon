@@ -42,6 +42,8 @@ public class PhotoRepository {
         }
     }
 
+
+
 //    @Transactional
 //    public void editAuction_Id(int new_id, int auction_id) {
 //        if (isExist(auction_id)) {

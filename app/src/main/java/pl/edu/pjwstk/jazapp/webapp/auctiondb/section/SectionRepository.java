@@ -4,40 +4,40 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.List;
 
 @Named
 @RequestScoped
-//@ApplicationScoped
 public class SectionRepository {
     @PersistenceContext
     private EntityManager em;
 
     @Transactional
-    public void createSection(){
-        SectionEntity sectionEntity = new SectionEntity("hehe");
+    public void create(String name) {
+        SectionEntity sectionEntity = new SectionEntity(name);
         em.persist(sectionEntity);
     }
 
     @Transactional
-    public void createSection(SectionEntity sectionEntity){
-        em.persist(sectionEntity);
+    public void edit(int id, String name) {
+        if (isSectionExist(id)) {
+            SectionEntity sectionEntity = em.find(SectionEntity.class, id);
+            sectionEntity.setName(name);
+            em.merge(sectionEntity);
+        }
     }
 
     @Transactional
-    public boolean isSectionExist(int id){
+    public boolean isSectionExist(int id) {
         SectionEntity search = em.find(SectionEntity.class, id);
         return search != null;
     }
 
     @Transactional
-    public List<SectionEntity> getAllSections(){
+    public List<SectionEntity> getAllSections() {
         return em.createQuery("FROM SectionEntity ", SectionEntity.class).getResultList();
     }
-
 
 
 }

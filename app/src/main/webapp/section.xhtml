@@ -2,7 +2,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
@@ -15,7 +14,7 @@
         <h:inputText styleClass="form-control" value="#{sectionRequest.name}" name="name"
                      id="name"/>
     </div>
-    <h:commandButton value="Create!" action="#{sectionModel.createSection}"
+    <h:commandButton value="Create!" action="#{sectionModel.create}"
                      styleClass="btn btn-primary"/>
 </h:form>
 

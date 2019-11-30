@@ -16,27 +16,22 @@ public class AuctionParameterRepository {
     private EntityManager em;
 
     @Transactional
-    public boolean isExist(int id){
-        AuctionParameterId search = em.find(AuctionParameterId.class, id);
+    public boolean isExist(int auction_id, int parameter_id) {
+        AuctionParameterId auctionParameterId = new AuctionParameterId(auction_id, parameter_id);
+        AuctionParameterId search = em.find(AuctionParameterId.class, auctionParameterId);
         return !(search == null);
     }
 
     @Transactional
-    public void create(AuctionParameterId entity) {em.persist(entity);}
-
-    @Transactional
-    public void create(int auction_id, int parameter_id, String value){
-        AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
-        ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter_id);
-
-        AuctionParameterValue entity = new AuctionParameterValue(auctionEntity,parameterEntity,value);
-        em.persist(entity);
-    }
-
-    @Transactional
-    public void created(int auction_id, int parameter_id, String value){
-        AuctionParameterValue entity = new AuctionParameterValue();
-        em.persist(entity);
+    public void create(int auction_id, int parameter_id, String value) {
+        if (!isExist(auction_id, parameter_id)) {
+            AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
+            ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter_id);
+            if ((auctionEntity != null) && (parameterEntity != null)) {
+                System.out.println("Przeszło! <-------------------------------------------------------------------------------------------------------------------------------------------");
+                em.persist(new AuctionParameterValue(auctionEntity, parameterEntity, value));
+            }
+        }
     }
 
 }

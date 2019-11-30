@@ -21,11 +21,17 @@ public class PhotoEntity {
         this.auctionEntity = auctionEntity;
     }
 
-    public PhotoEntity() { }
+    public PhotoEntity(String link) {
+        this.link = link;
+    }
+
+    public PhotoEntity() {
+    }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }

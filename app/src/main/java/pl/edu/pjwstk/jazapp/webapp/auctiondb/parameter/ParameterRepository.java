@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -34,11 +35,16 @@ public class ParameterRepository {
     }
 
     @Transactional
-    public void editId(int id, int newId){
+    public void editId(int id, int newId) {
         if (isExist(id)) {
             ParameterEntity parameterEntity = em.find(ParameterEntity.class, id);
             parameterEntity.setId(newId);
             em.persist(parameterEntity);
         }
+    }
+
+    @Transactional
+    public List<ParameterEntity> getAllParameters() {
+        return em.createQuery("FROM ParameterEntity ", ParameterEntity.class).getResultList();
     }
 }

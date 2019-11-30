@@ -8,19 +8,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "auction_parameter")
 public class AuctionParameterValue {
-
     @EmbeddedId
-    @JoinColumn(columnDefinition = "parameter_id")
     private AuctionParameterId auctionParameterId;
 
-    @OneToOne
-    @JoinColumn(columnDefinition = "auction_id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @MapsId("auction_id")
+    @JoinColumn(name = "auction_id")
     private AuctionEntity auctionEntity;
 
-    @ManyToOne
-    @JoinColumn(columnDefinition = "parameter_id")
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @MapsId("parameter_id")
+    @JoinColumn(name = "parameter_id")
     private ParameterEntity parameterEntity;
 
+
+    @Column(name = "value")
     private String value;
 
     public AuctionParameterValue(AuctionEntity auctionEntity, ParameterEntity parameterEntity, String value) {
@@ -30,7 +33,6 @@ public class AuctionParameterValue {
     }
 
     public AuctionParameterValue() {
-
     }
 
     public AuctionParameterId getAuctionParameterId() {

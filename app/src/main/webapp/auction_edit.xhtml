@@ -2,36 +2,56 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
 </h:head>
 <body>
 
 <h:form>
-    <div class="form-group">
-        <h:outputText value="ID:"/>
-        <h:inputText styleClass="form-control" value="#{auctionRequest.id}" name="edit"
-                     id="edit"/>
+
+    <div>
+        <h:outputText value="id"/>
+        <h:selectOneMenu value="#{auctionRequest.id}">
+            <c:forEach var="item" items="#{auctionRepository.allAuctions}">
+                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.description}"/>
+            </c:forEach>
+        </h:selectOneMenu>
+        <h:commandButton value="Edit photos" action="#{auctionModel.editPhoto}"
+                         styleClass="btn btn-primary"/>
     </div>
 
     <div class="form-group">
         <h:outputText value="Description"/>
         <h:inputText styleClass="form-control" value="#{auctionRequest.description}" name="description"
                      id="description"/>
+        <h:commandButton value="Edit description" action="#{auctionModel.editDescription}"
+                         styleClass="btn btn-primary"/>
     </div>
     <div class="form-group">
         <h:outputText value="section_id"/>
-        <h:inputText styleClass="form-control" value="#{auctionRequest.sectionId}" name="description"
-                     id="section_id"/>
+        <h:selectOneMenu value="#{auctionRequest.sectionId}">
+            <c:forEach var="item" items="#{sectionRepository.getAllSections()}">
+                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.name}"/>
+            </c:forEach>
+        </h:selectOneMenu>
+        <h:commandButton value="Edit section" action="#{auctionModel.editSection}"
+                         styleClass="btn btn-primary"/>
     </div>
     <div class="form-group">
         <h:outputText value="Price"/>
         <h:inputText styleClass="form-control" value="#{auctionRequest.price}" name="price"
                      id="price"/>
+        <h:commandButton value="Edit price" action="#{auctionModel.editPrice}"
+                         styleClass="btn btn-primary"/>
     </div>
-    <h:commandButton value="Create!" action="#{auctionModel.edit}"
+
+    <c:forEach var="item" items="#{auctionModel.findPhotosByAuctionId}">
+        <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
+    </c:forEach>
+
+    <h:commandButton value="Edit!" action="#{auctionModel.edit}"
                      styleClass="btn btn-primary"/>
 </h:form>
 

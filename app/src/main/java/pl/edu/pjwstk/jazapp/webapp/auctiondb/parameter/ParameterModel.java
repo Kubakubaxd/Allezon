@@ -12,11 +12,7 @@ public class ParameterModel {
     @Inject
     ParameterRepository parameterRepository;
 
-    public void create(){ parameterRepository.create(parameterRequest.getName()); }
-
-    public void editName() {parameterRepository.editName(parameterRequest.getId(), parameterRequest.getName());}
-
-    public void editId() {parameterRepository.editId(parameterRequest.getId(), parameterRequest.getNewId());}
-
-
+    public void create() {
+        parameterRepository.create(parameterRequest.getName());
+    }
 }

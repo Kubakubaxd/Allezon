@@ -2,24 +2,31 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
 </h:head>
 <body>
 
 <h:form>
-    <div class="form-group">
+    <div>
         <h:outputText value="auction_id"/>
-        <h:inputText styleClass="form-control" value="#{auctionParameterRequest.auction_id}" name="id"
-                     id="id"/>
+        <h:selectOneMenu value="#{auctionParameterRequest.auction_id}">
+            <c:forEach var="item" items="#{auctionRepository.getAllAuctions()}">
+                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id} : #{item.description}"/>
+            </c:forEach>
+        </h:selectOneMenu>
     </div>
 
-    <div class="form-group">
-        <h:outputText value="parameter"/>
-        <h:inputText styleClass="form-control" value="#{auctionParameterRequest.parameter}" name="parameter"
-                     id="parameter"/>
+    <div>
+        <h:outputText value="parameter_id"/>
+        <h:selectOneMenu value="#{auctionParameterRequest.parameter}">
+            <c:forEach var="item" items="#{parameterRepository.getAllParameters()}">
+                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.name}"/>
+            </c:forEach>
+        </h:selectOneMenu>
     </div>
 
     <div class="form-group">
@@ -27,7 +34,7 @@
         <h:inputText styleClass="form-control" value="#{auctionParameterRequest.value}" name="value"
                      id="value"/>
     </div>
-    <h:commandButton value="Create!" action="#{auctionParameterModel.create}"
+    <h:commandButton value="Create!" action="#{auctionModel.create}"
                      styleClass="btn btn-primary"/>
 </h:form>
 

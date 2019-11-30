@@ -28,57 +28,62 @@ public class AuctionRepository {
 
     @Transactional
     public void create(String description, int section_id, int price) {
-        if (sectionRepository.isSectionExist(section_id)){
+        if (sectionRepository.isSectionExist(section_id)) {
             SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
-            AuctionEntity auctionEntity = new AuctionEntity(description,sectionEntity,price);
+            AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price);
             em.persist(auctionEntity);
         }
     }
 
     @Transactional
-    public void edit(int id,String description, int section_id, int price) {
-        if(isExist(id) && sectionRepository.isSectionExist(section_id)) {
+    public void edit(int id, String description, int section_id, int price) {
+        if (isExist(id) && sectionRepository.isSectionExist(section_id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
             SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
             auctionEntity.setDescription(description);
             auctionEntity.setSection(sectionEntity);
             auctionEntity.setPrice(price);
-            em.persist(auctionEntity);
+            em.merge(auctionEntity);
         }
     }
 
     @Transactional
     public void editDescription(int id, String description) {
-        if(isExist(id)) {
+        if (isExist(id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
             auctionEntity.setDescription(description);
-            em.persist(auctionEntity);
+            em.merge(auctionEntity);
         }
     }
 
     @Transactional
     public void editSection(int id, int section_id) {
-        if(isExist(id) && sectionRepository.isSectionExist(section_id)) {
+        if (isExist(id) && sectionRepository.isSectionExist(section_id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
             SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
             auctionEntity.setSection(sectionEntity);
-            em.persist(auctionEntity);
+            em.merge(auctionEntity);
         }
     }
 
     @Transactional
     public void editPrice(int id, int price) {
-        if(isExist(id)) {
+        if (isExist(id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
             auctionEntity.setPrice(price);
-            em.persist(auctionEntity);
+            em.merge(auctionEntity);
         }
     }
 
     @Transactional
-    public List<AuctionEntity> getAllAuctions(){
+    public List<AuctionEntity> getAllAuctions() {
         return em.createQuery("FROM AuctionEntity", AuctionEntity.class).getResultList();
     }
 
-
+    @Transactional
+    public List<PhotoEntity> findPhotosByAuctionId(int id) {
+        System.out.println("ID: " + id + "<-----------------------------------------------------------");
+        AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
+        return auctionEntity.getPhotoEntityList();
+    }
 }

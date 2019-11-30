@@ -12,12 +12,11 @@ public class SectionModel {
     @Inject
     SectionRepository sectionRepository;
 
-    public void createSection(){
-        SectionEntity sectionEntity = new SectionEntity(sectionRequest.getName());
-        sectionRepository.createSection(sectionEntity);
+    public void create() {
+        sectionRepository.create(sectionRequest.getName());
     }
 
-    public boolean isSectionExist(int id){
-        return sectionRepository.isSectionExist(id);
+    public void edit() {
+        sectionRepository.edit(sectionRequest.getId(), sectionRequest.getName());
     }
 }

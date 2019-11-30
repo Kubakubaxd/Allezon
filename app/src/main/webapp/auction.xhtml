@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
 </h:head>
 <body>
 
@@ -16,11 +17,7 @@
         <h:inputText styleClass="form-control" value="#{auctionRequest.description}" name="description"
                      id="description"/>
     </div>
-<!--    <div class="form-group">-->
-<!--        <h:outputText value="section_id"/>-->
-<!--        <h:inputText styleClass="form-control" value="#{auctionRequest.sectionId}" name="description"-->
-<!--                     id="section_id"/>-->
-<!--    </div>-->
+
     <div>
         <h:outputText value="section_id"/>
         <h:selectOneMenu value = "#{auctionRequest.sectionId}">

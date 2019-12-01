@@ -15,6 +15,4 @@ public class AuctionParameterModel {
     public void create(){
         repository.create(request.getAuction_id(), request.getParameter(),request.getValue());
     }
-
-
 }

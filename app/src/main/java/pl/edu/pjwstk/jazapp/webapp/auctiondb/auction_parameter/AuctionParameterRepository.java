@@ -24,14 +24,11 @@ public class AuctionParameterRepository {
 
     @Transactional
     public void create(int auction_id, int parameter_id, String value) {
-        if (!isExist(auction_id, parameter_id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
             ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter_id);
-            if ((auctionEntity != null) && (parameterEntity != null)) {
-                System.out.println("Przeszło! <-------------------------------------------------------------------------------------------------------------------------------------------");
-                em.persist(new AuctionParameterValue(auctionEntity, parameterEntity, value));
-            }
-        }
+            AuctionParameterId auctionParameterId = new AuctionParameterId(auction_id,parameter_id);
+            AuctionParameterValue auctionParameterValue = new AuctionParameterValue(auctionParameterId, auctionEntity, parameterEntity,value);
+            em.persist(auctionParameterValue);
     }
 
 }

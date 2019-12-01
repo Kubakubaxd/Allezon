@@ -82,7 +82,6 @@ public class AuctionRepository {
 
     @Transactional
     public List<PhotoEntity> findPhotosByAuctionId(int id) {
-        System.out.println("ID: " + id + "<-----------------------------------------------------------");
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
         return auctionEntity.getPhotoEntityList();
     }

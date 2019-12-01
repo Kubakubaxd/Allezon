@@ -32,8 +32,22 @@ public class AuctionParameterValue {
         this.value = value;
     }
 
+    public AuctionParameterValue(AuctionParameterId auctionParameterId, String value) {
+        this.auctionParameterId = auctionParameterId;
+        this.value = value;
+    }
+
+    public AuctionParameterValue(AuctionParameterId auctionParameterId, AuctionEntity auctionEntity, ParameterEntity parameterEntity, String value) {
+        this.auctionParameterId = auctionParameterId;
+        this.auctionEntity = auctionEntity;
+        this.parameterEntity = parameterEntity;
+        this.value = value;
+    }
+
     public AuctionParameterValue() {
     }
+
+
 
     public AuctionParameterId getAuctionParameterId() {
         return auctionParameterId;

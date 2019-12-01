@@ -2,6 +2,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
@@ -34,7 +35,7 @@
         <h:inputText styleClass="form-control" value="#{auctionParameterRequest.value}" name="value"
                      id="value"/>
     </div>
-    <h:commandButton value="Create!" action="#{auctionModel.create}"
+    <h:commandButton value="Create!" action="#{auctionParameterModel.create}"
                      styleClass="btn btn-primary"/>
 </h:form>
 

@@ -12,12 +12,18 @@ public class AuctionRequest {
     private int sectionId;
     private int price;
 
+    public void idtoclass(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getDescription() {
         return description;
     }

@@ -1,7 +1,5 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo;
 
-import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction.AuctionModel;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,10 +12,14 @@ public class PhotoModel {
     @Inject
     PhotoRepository photoRepository;
 
-    public void create(){photoRepository.create(photoRequest.getId(),photoRequest.getLink());}
+    public void create() {
+        photoRepository.create(photoRequest.getId(), photoRequest.getLink());
+    }
 
     //public void editAuction_Id(){photoRepository.editAuction_Id(photoRequest.getId(), photoRequest.getId());}
 
-    public void editLink(){photoRepository.editLink(photoRequest.getLink(),photoRequest.getId());}
+    public void editLink() {
+        photoRepository.editLink(photoRequest.getLink(), photoRequest.getId());
+    }
 
 }

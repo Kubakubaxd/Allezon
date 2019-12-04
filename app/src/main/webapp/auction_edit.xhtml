@@ -7,57 +7,71 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+
 </h:head>
-<body>
 
-<h:form>
-    <div>
-        <h:outputText value="id"/>
-        <h:selectOneMenu value="#{auctionRequest.id}">
-            <c:forEach var="item" items="#{auctionRepository.allAuctions}">
-                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.description}"/>
-            </c:forEach>
-        </h:selectOneMenu>
+<f:metadata>
+    <f:viewParam name="auctionid" value="#{auctionRequest.id}"/>
+</f:metadata>
+
+<h:body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="pt-5 mx-auto">
+                <div class="card">
+
+                    <h:form>
+                        <div class="form-group">
+                            <h:outputText value="Description"/>
+                            <h:inputText styleClass="form-control" value="#{auctionRequest.description}"
+                                         name="description"
+                                         id="description"/>
+                            <h:commandButton value="Edit description"
+                                             action="#{auctionModel.editDescription()}"
+                                             styleClass="btn btn-primary"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputText value="section_id"/>
+                            <h:selectOneMenu value="#{auctionRequest.sectionId}">
+                                <c:forEach var="item" items="#{sectionRepository.getAllSections()}">
+                                    <f:selectItem itemValue="#{item.id}" itemLabel="#{item.name}"/>
+                                </c:forEach>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Edit section" action="#{auctionModel.editSection()}"
+                                             styleClass="btn btn-primary"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputText value="Price"/>
+                            <h:inputText styleClass="form-control" value="#{auctionRequest.price}" name="price"
+                                         id="price"/>
+                            <h:commandButton value="Edit price" action="#{auctionModel.editPrice()}"
+                                             styleClass="btn btn-primary"/>
+                        </div>
+
+                        <h:commandButton value="Edit!" action="#{auctionModel.edit()}"
+                                         styleClass="btn btn-primary"/>
+                    </h:form>
+
+                    <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}" var="item"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                    >
+                        <h:column>
+                            <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
+                            <h:link value="Edit" outcome="photo_edit">
+                                <f:param name="photoid" value="#{item.id}"/>
+                            </h:link>
+                        </h:column>
+                    </h:dataTable>
+
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <h:outputText value="Description"/>
-        <h:inputText styleClass="form-control" value="#{auctionRequest.description}" name="description"
-                     id="description"/>
-        <h:commandButton value="Edit description" action="#{auctionModel.editDescription}"
-                         styleClass="btn btn-primary"/>
-    </div>
-    <div class="form-group">
-        <h:outputText value="section_id"/>
-        <h:selectOneMenu value="#{auctionRequest.sectionId}">
-            <c:forEach var="item" items="#{sectionRepository.getAllSections()}">
-                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.name}"/>
-            </c:forEach>
-        </h:selectOneMenu>
-        <h:commandButton value="Edit section" action="#{auctionModel.editSection}"
-                         styleClass="btn btn-primary"/>
-    </div>
-    <div class="form-group">
-        <h:outputText value="Price"/>
-        <h:inputText styleClass="form-control" value="#{auctionRequest.price}" name="price"
-                     id="price"/>
-        <h:commandButton value="Edit price" action="#{auctionModel.editPrice}"
-                         styleClass="btn btn-primary"/>
-    </div>
 
-    <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(auctionEditRequest.auction_id)}" var="item"
-                 styleClass="order-table"
-                 headerClass="order-table-header"
-                 rowClasses="order-table-odd-row,order-table-even-row"
-    >
-    <h:column>
-        <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
-    </h:column>
-    </h:dataTable>
-
-    <h:commandButton value="Edit!" action="#{auctionModel.edit}"
-                     styleClass="btn btn-primary"/>
-</h:form>
-
-</body>
+</h:body>
 </html>

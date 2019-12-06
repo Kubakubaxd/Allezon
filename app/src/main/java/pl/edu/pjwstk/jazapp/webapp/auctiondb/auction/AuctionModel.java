@@ -34,11 +34,6 @@ public class AuctionModel {
         return "myauctions";
     }
 
-    public String editDescription(int id) {
-        System.out.println("AuctionModel id: " + id + " <---------------------------------------------------------------------------------------------------------------------------------------------------");
-        auctionRepository.editDescription(id, auctionRequest.getDescription());
-
-    }
 
     public void editSection() {
         auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());

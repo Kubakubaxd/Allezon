@@ -1,5 +1,8 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter.AuctionParameterValue;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
 
@@ -24,6 +27,10 @@ public class AuctionEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     private List<PhotoEntity> photoEntityList;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<AuctionParameterValue> AuctionParameterList;
+
     public AuctionEntity(String description, SectionEntity section, int price, List<PhotoEntity> photoEntityList) {
         this.description = description;
         this.section = section;
@@ -39,6 +46,7 @@ public class AuctionEntity {
 
     public AuctionEntity() {
     }
+
 
     public int getId() {
         return id;
@@ -80,10 +88,19 @@ public class AuctionEntity {
         this.photoEntityList = photoEntityList;
     }
 
-    public String firstPhoto(){
-        if(!photoEntityList.isEmpty())
+    public String firstPhoto() {
+        if (!photoEntityList.isEmpty())
             return photoEntityList.get(0).getLink();
         else
             return "https://www.computerhope.com/jargon/e/error.gif";
+    }
+
+    public List<AuctionParameterValue> getAuctionParameterList() {
+        System.out.println("getAuctionParameterList: " + AuctionParameterList.size() + " <----------------------------------------------------------------------------------------------------------------------------------------------");
+        return AuctionParameterList;
+    }
+
+    public void setAuctionParameterList(List<AuctionParameterValue> auctionParameterList) {
+        AuctionParameterList = auctionParameterList;
     }
 }

@@ -1,8 +1,10 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter.AuctionParameterValue;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
+import pl.edu.pjwstk.jazapp.webapp.session.SessionAsk;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -17,6 +19,8 @@ import java.util.List;
 public class AuctionRepository {
     @Inject
     SectionRepository sectionRepository;
+    @Inject
+    SessionAsk sessionAsk;
     @PersistenceContext
     private EntityManager em;
 
@@ -30,7 +34,8 @@ public class AuctionRepository {
     public void create(String description, int section_id, int price) {
         if (sectionRepository.isSectionExist(section_id)) {
             SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
-            AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price);
+            String owner = sessionAsk.getUsername();
+            AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price, owner);
             em.persist(auctionEntity);
         }
     }
@@ -81,8 +86,25 @@ public class AuctionRepository {
     }
 
     @Transactional
+    public List<AuctionEntity> getAllAuctionsByOwner(String ownerVal) {
+        // return em.createQuery("FROM AuctionEntity", AuctionEntity.class).setParameter(ownerVal, "owner").getResultList();
+        return em.createQuery(
+                "SELECT c FROM AuctionEntity c WHERE c.owner LIKE ?1"
+                , AuctionEntity.class)
+                .setParameter(1, ownerVal)
+                .getResultList();
+    }
+
+    @Transactional
     public List<PhotoEntity> findPhotosByAuctionId(int id) {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
         return auctionEntity.getPhotoEntityList();
+    }
+
+    @Transactional
+    public List<AuctionParameterValue> findParametersByAuctionId(int id) {
+        AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
+
+        return auctionEntity.getAuctionParameterList();
     }
 }

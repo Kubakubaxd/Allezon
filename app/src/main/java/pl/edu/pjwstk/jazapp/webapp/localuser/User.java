@@ -7,14 +7,16 @@ public class User {
     private String surname;
     private String date;
     private String email;
+    private boolean admin;
 
-    public User(String username, String password, String firstname, String surname, String date, String email) {
+    public User(String username, String password, String firstname, String surname, String date, String email, boolean admin) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.surname = surname;
         this.date = date;
         this.email = email;
+        this.admin = admin;
     }
 
     public User(String username, String password) {
@@ -24,6 +26,7 @@ public class User {
         this.surname = "";
         this.date = "";
         this.email = "";
+        this.admin = false;
     }
 
     public String getDate() {
@@ -53,13 +56,24 @@ public class User {
     public String getSurname() {
         return surname;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

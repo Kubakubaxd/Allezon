@@ -8,6 +8,7 @@ CREATE TABLE userspsqla
     surname VARCHAR(30),
     email VARCHAR(30),
     birthdate VARCHAR (30),
+    admin BOOLEAN,
 
     PRIMARY KEY (username)
 );
@@ -26,6 +27,7 @@ CREATE TABLE auction
     description VARCHAR (250),
     section_id BIGINT REFERENCES section(id),
     price INT,
+    owner VARCHAR(30),
 
     PRIMARY KEY (id)
 );

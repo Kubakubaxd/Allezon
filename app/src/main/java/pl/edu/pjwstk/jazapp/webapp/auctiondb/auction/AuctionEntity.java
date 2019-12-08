@@ -22,8 +22,6 @@ public class AuctionEntity {
     @OneToOne
     private SectionEntity section;
 
-    private int price;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     private List<PhotoEntity> photoEntityList;
 
@@ -31,17 +29,24 @@ public class AuctionEntity {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<AuctionParameterValue> AuctionParameterList;
 
+    private int price;
+
+    private String owner;
+
+
     public AuctionEntity(String description, SectionEntity section, int price, List<PhotoEntity> photoEntityList) {
         this.description = description;
         this.section = section;
         this.price = price;
         this.photoEntityList = photoEntityList;
+
     }
 
-    public AuctionEntity(String description, SectionEntity section, int price) {
+    public AuctionEntity(String description, SectionEntity section, int price, String owner) {
         this.description = description;
         this.section = section;
         this.price = price;
+        this.owner = owner;
     }
 
     public AuctionEntity() {
@@ -102,5 +107,13 @@ public class AuctionEntity {
 
     public void setAuctionParameterList(List<AuctionParameterValue> auctionParameterList) {
         AuctionParameterList = auctionParameterList;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

@@ -3,6 +3,7 @@
     <words>
       <w>firstname</w>
       <w>ifsessiontrue</w>
+      <w>userspsqla</w>
     </words>
   </dictionary>
 </component>

@@ -24,35 +24,9 @@ public class AuctionModel {
         auctionRepository.edit(auctionRequest.getId(), auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
     }
 
-    public void edit(int id) {
-        System.out.println("AuctionModel id: " + id + " <---------------------------------------------------------------------------------------------------------------------------------------------------");
-        auctionRepository.edit(id, auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
-    }
-
     public String editDescription() {
         auctionRepository.editDescription(auctionRequest.getId(), auctionRequest.getDescription());
         return "myauctions";
-    }
-
-
-    public void editSection() {
-        auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());
-    }
-
-    public void editSection(int id) {
-        auctionRepository.editSection(id, auctionRequest.getSectionId());
-    }
-
-    public void editPrice() {
-        auctionRepository.editPrice(auctionRequest.getId(), auctionRequest.getPrice());
-    }
-
-    public void editPrice(int id) {
-        auctionRepository.editPrice(id, auctionRequest.getPrice());
-    }
-
-    public String editPhoto() {
-        return "auction_edit.xhtml";
     }
 
     public List<PhotoEntity> findPhotosByAuctionId() {
@@ -77,5 +51,25 @@ public class AuctionModel {
             list.add(photoEntity);
             return list;
         }
+    }
+
+    public void editSection() {
+        auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());
+    }
+
+    public void editSection(int id) {
+        auctionRepository.editSection(id, auctionRequest.getSectionId());
+    }
+
+    public void editPrice() {
+        auctionRepository.editPrice(auctionRequest.getId(), auctionRequest.getPrice());
+    }
+
+    public void editPrice(int id) {
+        auctionRepository.editPrice(id, auctionRequest.getPrice());
+    }
+
+    public String editPhoto() {
+        return "auction_edit.xhtml";
     }
 }

@@ -4,7 +4,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">>
+      xmlns:f="http://java.sun.com/jsf/core">>
 
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
@@ -12,7 +12,6 @@
 </h:head>
 
 <h:body>
-
 
     <h:form id="myauctions">
         <h:dataTable value="#{auctionRepository.allAuctions}" var="item"
@@ -30,13 +29,6 @@
                 <h:outputText value="Description: #{item.description}"/>
             </h:column>
 
-            <h:column>
-                <h:outputText value="Parametry: "/>
-                <c:forEach var="para" items="#{item.getAuctionParameterList()}">
-                    <h:outputText value="#{para.auctionEntity.id}: #{para.parameterEntity.id}"/>
-                    <h:outputText value="#{para.parameterEntity.name}: #{para.value}"/>
-                </c:forEach>
-            </h:column>
 
             <h:column>
                 <h:outputText value="Price: #{item.price} PLN"/>

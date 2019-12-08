@@ -12,7 +12,11 @@ public class AuctionParameterModel {
     @Inject
     AuctionParameterRepository repository;
 
-    public void create(){
-        repository.create(request.getAuction_id(), request.getParameter(),request.getValue());
+    public void create() {
+        repository.create(request.getAuction_id(), request.getParameter(), request.getValue());
+    }
+
+    public void edit() {
+        repository.create(request.getAuction_id(), request.getParameter(), request.getValue());
     }
 }

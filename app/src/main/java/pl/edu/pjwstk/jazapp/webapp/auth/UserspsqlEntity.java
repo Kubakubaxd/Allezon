@@ -15,15 +15,18 @@ public class UserspsqlEntity {
     private String surname;
     private String email;
     private String birthdate;
+    private boolean admin;
 
-     public UserspsqlEntity(String username, String password, String firstname, String surname, String email, String birthdate) {
+    public UserspsqlEntity(String username, String password, String firstname, String surname, String email, String birthdate, boolean admin) {
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.surname = surname;
         this.email = email;
         this.birthdate = birthdate;
+        this.admin = admin;
     }
+
 
     public UserspsqlEntity() {
     }
@@ -36,14 +39,28 @@ public class UserspsqlEntity {
     public String getFirstname() {
         return firstname;
     }
+
     public String getSurname() {
         return surname;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getBirthdate() {
         return birthdate;
     }
-    public void setPassword(String password) { this.password = password; }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 }

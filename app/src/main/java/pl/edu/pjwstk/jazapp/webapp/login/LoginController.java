@@ -9,12 +9,14 @@ import javax.inject.Named;
 public class LoginController {
     @Inject
     private LoginModel loginModel;
+    @Inject
+    LoginRequest loginRequest;
 
     public String login() {
-        if (loginModel.login())
-            return "index.xhtml";
-        else
-            return "login";
+        if (loginModel.login(loginRequest.getUsername(), loginRequest.getPassword()) && !loginModel.isAdmin(loginRequest.getUsername()))
+            return "myauctionsowner";
+        else if (loginModel.login(loginRequest.getUsername(), loginRequest.getPassword())) return "index.xhtml";
+        else return "login";
     }
 
     public String logout() {

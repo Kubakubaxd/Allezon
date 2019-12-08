@@ -13,6 +13,7 @@ public class Session implements Serializable {
     private String firstname;
     private String surname;
     private String date;
+    private boolean admin;
 
     public String getDate() {
         return date;
@@ -39,13 +40,24 @@ public class Session implements Serializable {
     public String getSurname() {
         return surname;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
     public boolean isLogged() {
         return isLogged;
     }
+
     public void setLogged(boolean logged) {
         isLogged = logged;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

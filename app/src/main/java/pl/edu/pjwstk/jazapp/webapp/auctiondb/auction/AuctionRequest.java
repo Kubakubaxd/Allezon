@@ -11,19 +11,14 @@ public class AuctionRequest {
     private String description;
     private int sectionId;
     private int price;
-
-    public void idtoclass(int id) {
-        this.id = id;
-    }
+    private String owner;
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getDescription() {
         return description;
     }
@@ -33,13 +28,24 @@ public class AuctionRequest {
     public int getSectionId() {
         return sectionId;
     }
+
     public void setSectionId(int sectionId) {
         this.sectionId = sectionId;
     }
+
     public int getPrice() {
         return price;
     }
+
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

@@ -1,9 +1,9 @@
 package pl.edu.pjwstk.jazapp.webapp.register;
 
-import pl.edu.pjwstk.jazapp.webapp.localuser.User;
-import pl.edu.pjwstk.jazapp.webapp.localuser.UserDB;
 import pl.edu.pjwstk.jazapp.webapp.auth.UserspsqlEntity;
 import pl.edu.pjwstk.jazapp.webapp.auth.UserspsqlRepository;
+import pl.edu.pjwstk.jazapp.webapp.localuser.User;
+import pl.edu.pjwstk.jazapp.webapp.localuser.UserDB;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -34,17 +34,17 @@ public class Register implements Serializable {
             return false;
         }
 
-        if (!userspsqlRepository.checkIfExist(username)){
-            System.out.println("Zakładam konto lokalne");
-            UserspsqlEntity newUser = new UserspsqlEntity(getUsername(),getPassword(),getFirstname(),getSurname(),getEmail(),getDate());
+        if (!userspsqlRepository.checkIfExist(username)) {
+            System.out.println("Zakładam konto w bazie");
+            UserspsqlEntity newUser = new UserspsqlEntity(getUsername(), getPassword(), getFirstname(), getSurname(), getEmail(), getDate(), true);
             userspsqlRepository.createUser(newUser);
             repasswordWrong = false;
             usernameWrong = false;
             return true;
         }
         else if(!userDB.checkIfUserExist(username) ) {
-            System.out.println("Zakładam konto w bazie");
-            User newUser = new User(getUsername(), getPassword(), getFirstname(), getSurname(), getDate(), getEmail());
+            System.out.println("Zakładam konto lokalne");
+            User newUser = new User(getUsername(), getPassword(), getFirstname(), getSurname(), getDate(), getEmail(), false);
             userDB.addUser(newUser);
             repasswordWrong = false;
             usernameWrong = false;

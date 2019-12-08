@@ -16,7 +16,6 @@
 </f:metadata>
 
 <h:body>
-
     <div class="container-fluid">
         <div class="row">
             <div class="pt-5 mx-auto">
@@ -39,6 +38,7 @@
                                     <f:selectItem itemValue="#{item.id}" itemLabel="#{item.name}"/>
                                 </c:forEach>
                             </h:selectOneMenu>
+                            <br/>
                             <h:commandButton value="Edit section" action="#{auctionModel.editSection()}"
                                              styleClass="btn btn-primary"/>
                         </div>
@@ -50,8 +50,10 @@
                                              styleClass="btn btn-primary"/>
                         </div>
 
-                        <h:commandButton value="Edit!" action="#{auctionModel.edit()}"
+                        <h:commandButton value="Edit everything" action="#{auctionModel.edit()}"
                                          styleClass="btn btn-primary"/>
+
+
                     </h:form>
 
                     <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}" var="item"
@@ -66,6 +68,22 @@
                             </h:link>
                         </h:column>
                     </h:dataTable>
+
+                    <h:outputText value="Parameters: "/>
+                    <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}" var="item"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                    >
+                        <h:column>
+                            <h:outputText value="#{item.parameterEntity.name}: #{item.value}   "/>
+                            <h:link value="Change" outcome="auction_parameter_edit">
+                                <f:param name="auction" value="#{item.auctionEntity.id}"/>
+                                <f:param name="parameter" value="#{item.parameterEntity.id}"/>
+                            </h:link>
+                        </h:column>
+                    </h:dataTable>
+
 
                 </div>
             </div>

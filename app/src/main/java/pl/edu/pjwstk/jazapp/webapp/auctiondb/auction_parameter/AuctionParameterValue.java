@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "auction_parameter")
 public class AuctionParameterValue {
     @EmbeddedId
+    //@GeneratedValue
     private AuctionParameterId auctionParameterId;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -26,17 +27,6 @@ public class AuctionParameterValue {
     @Column(name = "value")
     private String value;
 
-    public AuctionParameterValue(AuctionEntity auctionEntity, ParameterEntity parameterEntity, String value) {
-        this.auctionEntity = auctionEntity;
-        this.parameterEntity = parameterEntity;
-        this.value = value;
-    }
-
-    public AuctionParameterValue(AuctionParameterId auctionParameterId, String value) {
-        this.auctionParameterId = auctionParameterId;
-        this.value = value;
-    }
-
     public AuctionParameterValue(AuctionParameterId auctionParameterId, AuctionEntity auctionEntity, ParameterEntity parameterEntity, String value) {
         this.auctionParameterId = auctionParameterId;
         this.auctionEntity = auctionEntity;
@@ -47,6 +37,10 @@ public class AuctionParameterValue {
     public AuctionParameterValue() {
     }
 
+    public AuctionParameterValue(ParameterEntity parameterEntity, String value) {
+        this.parameterEntity = parameterEntity;
+        this.value = value;
+    }
 
 
     public AuctionParameterId getAuctionParameterId() {

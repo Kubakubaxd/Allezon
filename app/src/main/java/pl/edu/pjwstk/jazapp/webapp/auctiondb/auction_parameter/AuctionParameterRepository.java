@@ -24,11 +24,26 @@ public class AuctionParameterRepository {
 
     @Transactional
     public void create(int auction_id, int parameter_id, String value) {
-            AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
-            ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter_id);
-            AuctionParameterId auctionParameterId = new AuctionParameterId(auction_id,parameter_id);
-            AuctionParameterValue auctionParameterValue = new AuctionParameterValue(auctionParameterId, auctionEntity, parameterEntity,value);
-            em.persist(auctionParameterValue);
+        AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
+        ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter_id);
+        AuctionParameterId auctionParameterId = new AuctionParameterId(auction_id, parameter_id);
+        AuctionParameterValue auctionParameterValue = new AuctionParameterValue(auctionParameterId, auctionEntity, parameterEntity, value);
+        em.persist(auctionParameterValue);
+    }
+
+    @Transactional
+    public void edit(int auction_id, int parameter_id, String value) {
+        AuctionParameterId auctionParameterId = new AuctionParameterId(auction_id, parameter_id);
+        AuctionParameterValue auctionParameterValue = em.find(AuctionParameterValue.class, auctionParameterId);
+        //em.detach(auctionParameterValue);
+        //em.flush();
+        //em.refresh(auctionParameterValue);
+        auctionParameterValue.setValue(value);
+        //TODO: Nie działa update
+        //em.persist(auctionParameterValue);
+        em.merge(auctionParameterValue);
+
+
     }
 
 }

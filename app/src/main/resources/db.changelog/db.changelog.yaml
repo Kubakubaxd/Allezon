@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 20191030_init
-      author: Paweł Janowiak
+      author: Jakub Kwiatkowski
       sqlFile:
         relativeToChangelogFile: true
         splitStatements: false

@@ -13,27 +13,37 @@ public class AuctionModel {
     @Inject
     AuctionRepository auctionRepository;
     @Inject
-    AuctionRequest auctionRequest;
+    AuctionRequest req;
 
-    public void create() {
-        auctionRepository.create(auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
+    public String create() {
+        auctionRepository.create(req.getDescription(), req.getSectionId(), req.getPrice(), req.getPhotoLink());
+        return "myauctionsowner";
     }
 
-    public void edit() {
-        System.out.println("AuctionRequest.id: " + auctionRequest.getId() + " <------------------------------------------------------------------------------------------------------------------------------");
-        auctionRepository.edit(auctionRequest.getId(), auctionRequest.getDescription(), auctionRequest.getSectionId(), auctionRequest.getPrice());
+    public String edit() {
+        auctionRepository.edit(req.getId(), req.getDescription(), req.getSectionId(), req.getPrice());
+        return "myauctionsowner";
     }
 
     public String editDescription() {
-        auctionRepository.editDescription(auctionRequest.getId(), auctionRequest.getDescription());
-        return "myauctions";
+        auctionRepository.editDescription(req.getId(), req.getDescription());
+        return "myauctionsowner";
+    }
+
+    public String editSection() {
+        auctionRepository.editSection(req.getId(), req.getSectionId());
+        return "myauctionsowner";
+    }
+
+    public String editPrice() {
+        auctionRepository.editPrice(req.getId(), req.getPrice());
+        return "myauctionsowner";
     }
 
     public List<PhotoEntity> findPhotosByAuctionId() {
-        //String strzalka = " <-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-        if (!(auctionRequest.getId() == 0)) {
+        if (!(req.getId() == 0)) {
             //System.out.println("Id jest prawidlowe: " + auctionRequest.getId() + strzalka);
-            var list = auctionRepository.findPhotosByAuctionId(auctionRequest.getId());
+            var list = auctionRepository.findPhotosByAuctionId(req.getId());
 
             if (list.isEmpty()) {
                 //System.out.println("Ale lista jest pusta :(" + strzalka);
@@ -51,25 +61,5 @@ public class AuctionModel {
             list.add(photoEntity);
             return list;
         }
-    }
-
-    public void editSection() {
-        auctionRepository.editSection(auctionRequest.getId(), auctionRequest.getSectionId());
-    }
-
-    public void editSection(int id) {
-        auctionRepository.editSection(id, auctionRequest.getSectionId());
-    }
-
-    public void editPrice() {
-        auctionRepository.editPrice(auctionRequest.getId(), auctionRequest.getPrice());
-    }
-
-    public void editPrice(int id) {
-        auctionRepository.editPrice(id, auctionRequest.getPrice());
-    }
-
-    public String editPhoto() {
-        return "auction_edit.xhtml";
     }
 }

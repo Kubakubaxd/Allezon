@@ -40,8 +40,7 @@ public class AuctionParameterRepository {
         //em.refresh(auctionParameterValue);
         auctionParameterValue.setValue(value);
         //TODO: Nie działa update
-        //em.persist(auctionParameterValue);
-        em.merge(auctionParameterValue);
+        em.refresh(auctionParameterValue);
 
 
     }

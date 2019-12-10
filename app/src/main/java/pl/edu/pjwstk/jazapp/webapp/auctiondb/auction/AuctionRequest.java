@@ -12,6 +12,7 @@ public class AuctionRequest {
     private int sectionId;
     private int price;
     private String owner;
+    private String photoLink;
 
     public int getId() {
         return id;
@@ -28,11 +29,9 @@ public class AuctionRequest {
     public int getSectionId() {
         return sectionId;
     }
-
     public void setSectionId(int sectionId) {
         this.sectionId = sectionId;
     }
-
     public int getPrice() {
         return price;
     }
@@ -47,5 +46,13 @@ public class AuctionRequest {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
     }
 }

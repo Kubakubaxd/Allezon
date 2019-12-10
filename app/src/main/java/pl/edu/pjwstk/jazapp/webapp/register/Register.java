@@ -36,7 +36,7 @@ public class Register implements Serializable {
 
         if (!userspsqlRepository.checkIfExist(username)) {
             System.out.println("Zakładam konto w bazie");
-            UserspsqlEntity newUser = new UserspsqlEntity(getUsername(), getPassword(), getFirstname(), getSurname(), getEmail(), getDate(), true);
+            UserspsqlEntity newUser = new UserspsqlEntity(getUsername(), getPassword(), getFirstname(), getSurname(), getEmail(), getDate(), false);
             userspsqlRepository.createUser(newUser);
             repasswordWrong = false;
             usernameWrong = false;

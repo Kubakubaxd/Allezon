@@ -52,38 +52,41 @@
 
                         <h:commandButton value="Edit everything" action="#{auctionModel.edit()}"
                                          styleClass="btn btn-primary"/>
-
-
                     </h:form>
 
-                    <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}" var="item"
-                                 styleClass="order-table"
-                                 headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row,order-table-even-row"
-                    >
-                        <h:column>
-                            <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
-                            <h:link value="Edit" outcome="photo_edit">
-                                <f:param name="photoid" value="#{item.id}"/>
-                            </h:link>
-                        </h:column>
-                    </h:dataTable>
+                    <h:form>
+                        <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}" var="item"
+                                     rendered="#{auctionRepository.isPhotoInAuction(param['auctionid'])}"
+                                     styleClass="order-table" headerClass="order-table-header"
+                                     rowClasses="order-table-odd-row,order-table-even-row">
+                            <h:column>
+                                <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
+                                <h:link value="Edit" outcome="photo_edit">
+                                    <f:param name="photoid" value="#{item.id}"/>
+                                </h:link>
+                            </h:column>
+                        </h:dataTable>
+                        <h:link value="Add photo" outcome="photo">
+                            <f:param name="auctionid" value="#{param['auctionid']}"/>
+                        </h:link>
+                    </h:form>
 
-                    <h:outputText value="Parameters: "/>
-                    <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}" var="item"
-                                 styleClass="order-table"
-                                 headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row,order-table-even-row"
-                    >
-                        <h:column>
-                            <h:outputText value="#{item.parameterEntity.name}: #{item.value}   "/>
-                            <h:link value="Change" outcome="auction_parameter_edit">
-                                <f:param name="auction" value="#{item.auctionEntity.id}"/>
-                                <f:param name="parameter" value="#{item.parameterEntity.id}"/>
-                            </h:link>
-                        </h:column>
-                    </h:dataTable>
+                    <h:form>
+                        <h:outputText value="Parameters: "/>
+                        <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}"
+                                     var="item" styleClass="order-table" headerClass="order-table-header"
+                                     rowClasses="order-table-odd-row,order-table-even-row">
+                            <h:column>
+                                <h:outputText value="#{item.parameterEntity.name}: #{item.value}   "/>
 
+                                <h:link value="Change" outcome="auction_parameter_edit">
+                                    <f:param name="auction" value="#{item.auctionEntity.id}"/>
+                                    <f:param name="parameter" value="#{item.parameterEntity.id}"/>
+                                </h:link>
+
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
 
                 </div>
             </div>

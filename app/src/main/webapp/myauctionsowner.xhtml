@@ -4,21 +4,25 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">>
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
     <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+
 </h:head>
 
 <h:body>
+    <h:form>
+        <h:commandButton value="Logout" action="#{loginController.logout}" styleClass="btn btn-primary"/>
+        <h:commandButton value="Create auction" action="auction" styleClass="btn btn-primary"/>
+    </h:form>
 
     <h:form id="myauctions">
         <h:dataTable value="#{auctionRepository.getAllAuctionsByOwner(sessionAsk.username)}" var="item"
                      styleClass="table"
                      headerClass="order-table-header"
-                     rowClasses="order-table-odd-row,order-table-even-row"
-        >
+                     rowClasses="order-table-odd-row,order-table-even-row">
 
             <h:column>
                 <h:inputHidden value="#{item.id}" name="auction_id"/>
@@ -29,7 +33,6 @@
                 <h:outputText value="Description: #{item.description}"/>
             </h:column>
 
-
             <h:column>
                 <h:outputText value="Price: #{item.price} PLN"/>
             </h:column>
@@ -37,6 +40,7 @@
             <h:column>
                 <h:graphicImage url="#{item.firstPhoto()}" width="100px" height="100px"/>
             </h:column>
+
             <h:column>
                 <h:link value="Edit" outcome="auction_edit">
                     <f:param name="auctionid" value="#{item.id}"/>

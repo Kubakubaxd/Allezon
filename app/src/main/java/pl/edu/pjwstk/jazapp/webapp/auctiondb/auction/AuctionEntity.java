@@ -101,12 +101,15 @@ public class AuctionEntity {
     }
 
     public List<AuctionParameterValue> getAuctionParameterList() {
-        System.out.println("getAuctionParameterList: " + AuctionParameterList.size() + " <----------------------------------------------------------------------------------------------------------------------------------------------");
         return AuctionParameterList;
     }
 
     public void setAuctionParameterList(List<AuctionParameterValue> auctionParameterList) {
         AuctionParameterList = auctionParameterList;
+    }
+
+    public boolean isPhoto() {
+        return photoEntityList.isEmpty();
     }
 
     public String getOwner() {

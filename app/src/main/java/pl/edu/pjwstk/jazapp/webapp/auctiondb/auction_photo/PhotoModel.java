@@ -12,14 +12,16 @@ public class PhotoModel {
     @Inject
     PhotoRepository photoRepository;
 
-    public void create() {
+    public String create() {
         photoRepository.create(photoRequest.getId(), photoRequest.getLink());
+        return "myauctionsowner";
     }
 
     //public void editAuction_Id(){photoRepository.editAuction_Id(photoRequest.getId(), photoRequest.getId());}
 
-    public void editLink() {
+    public String editLink() {
         photoRepository.editLink(photoRequest.getLink(), photoRequest.getId());
+        return "myauctionsowner";
     }
 
 }

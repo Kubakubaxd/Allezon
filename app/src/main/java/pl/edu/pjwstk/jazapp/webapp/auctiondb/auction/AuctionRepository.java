@@ -2,6 +2,7 @@ package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter.AuctionParameterValue;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.parameter.ParameterEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
 import pl.edu.pjwstk.jazapp.webapp.session.SessionAsk;
@@ -12,6 +13,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -30,12 +32,35 @@ public class AuctionRepository {
         return !(search == null);
     }
 
+//    @Transactional
+//    public void create(String description, int section_id, int price) {
+//        if (sectionRepository.isSectionExist(section_id)) {
+//            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
+//            String owner = sessionAsk.getUsername();
+//            AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price, owner);
+//            em.persist(auctionEntity);
+//        }
+//    }
+
     @Transactional
-    public void create(String description, int section_id, int price) {
+    public void create(String description, int section_id, int price, String link) {
         if (sectionRepository.isSectionExist(section_id)) {
+            System.out.println("IDZIE 1 <------------------------------------------------------------------------------------------");
             SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
             String owner = sessionAsk.getUsername();
             AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price, owner);
+            System.out.println("IDZIE 2 <------------------------------------------------------------------------------------------");
+            //List<PhotoEntity> list = auctionEntity.getPhotoEntityList();
+            ArrayList<PhotoEntity> lista = new ArrayList<>();
+            System.out.println("IDZIE 3 <------------------------------------------------------------------------------------------");
+            PhotoEntity photo = new PhotoEntity(link);
+            System.out.println("IDZIE 4 <------------------------------------------------------------------------------------------");
+            lista.add(photo);
+            System.out.println("IDZIE 5 <------------------------------------------------------------------------------------------");
+            auctionEntity.setPhotoEntityList(lista);
+
+            System.out.println("IDZIE 6 <------------------------------------------------------------------------------------------");
+
             em.persist(auctionEntity);
         }
     }
@@ -87,7 +112,6 @@ public class AuctionRepository {
 
     @Transactional
     public List<AuctionEntity> getAllAuctionsByOwner(String ownerVal) {
-        // return em.createQuery("FROM AuctionEntity", AuctionEntity.class).setParameter(ownerVal, "owner").getResultList();
         return em.createQuery(
                 "SELECT c FROM AuctionEntity c WHERE c.owner LIKE ?1"
                 , AuctionEntity.class)
@@ -98,13 +122,36 @@ public class AuctionRepository {
     @Transactional
     public List<PhotoEntity> findPhotosByAuctionId(int id) {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
-        return auctionEntity.getPhotoEntityList();
+        List<PhotoEntity> list = auctionEntity.getPhotoEntityList();
+        if (list.isEmpty()) {
+            System.out.println("JEST PUSTO <---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            PhotoEntity photo = new PhotoEntity("https://www.computerhope.com/jargon/e/error.gif");
+            photo.setId(0);
+            list.add(photo);
+        }
+        return list;
     }
+
+    @Transactional
+    public boolean isPhotoInAuction(int id) {
+        return !em.find(AuctionEntity.class, id).getPhotoEntityList().isEmpty();
+    }
+
 
     @Transactional
     public List<AuctionParameterValue> findParametersByAuctionId(int id) {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
-
-        return auctionEntity.getAuctionParameterList();
+        List<AuctionParameterValue> list = auctionEntity.getAuctionParameterList();
+        if (list.isEmpty()) {
+            System.out.println("JEST PUSTO <---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            ParameterEntity parameterEntity = new ParameterEntity("EMPTY");
+            parameterEntity.setId(0);
+            AuctionEntity auctionEntity1 = new AuctionEntity();
+            auctionEntity1.setId(-1);
+            AuctionParameterValue parameter = new AuctionParameterValue(parameterEntity, "EMPTY");
+            parameter.setAuctionEntity(auctionEntity1);
+            list.add(parameter);
+        }
+        return list;
     }
 }

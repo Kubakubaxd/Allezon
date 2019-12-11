@@ -22,25 +22,18 @@ public class AuctionEntity {
     @OneToOne
     private SectionEntity section;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
+    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     private List<PhotoEntity> photoEntityList;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
+    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<AuctionParameterValue> AuctionParameterList;
 
     private int price;
 
     private String owner;
-
-
-    public AuctionEntity(String description, SectionEntity section, int price, List<PhotoEntity> photoEntityList) {
-        this.description = description;
-        this.section = section;
-        this.price = price;
-        this.photoEntityList = photoEntityList;
-
-    }
 
     public AuctionEntity(String description, SectionEntity section, int price, String owner) {
         this.description = description;
@@ -52,47 +45,36 @@ public class AuctionEntity {
     public AuctionEntity() {
     }
 
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public SectionEntity getSection() {
         return section;
     }
-
     public void setSection(SectionEntity section) {
         this.section = section;
     }
-
     public int getPrice() {
         return price;
     }
-
     public void setPrice(int price) {
         this.price = price;
     }
-
     public List<PhotoEntity> getPhotoEntityList() {
         return photoEntityList;
     }
-
     public void setPhotoEntityList(List<PhotoEntity> photoEntityList) {
         this.photoEntityList = photoEntityList;
     }
-
     public String firstPhoto() {
         if (!photoEntityList.isEmpty())
             return photoEntityList.get(0).getLink();
@@ -103,19 +85,15 @@ public class AuctionEntity {
     public List<AuctionParameterValue> getAuctionParameterList() {
         return AuctionParameterList;
     }
-
     public void setAuctionParameterList(List<AuctionParameterValue> auctionParameterList) {
         AuctionParameterList = auctionParameterList;
     }
-
     public boolean isPhoto() {
         return photoEntityList.isEmpty();
     }
-
     public String getOwner() {
         return owner;
     }
-
     public void setOwner(String owner) {
         this.owner = owner;
     }

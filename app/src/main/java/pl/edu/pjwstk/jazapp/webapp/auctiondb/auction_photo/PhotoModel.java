@@ -17,7 +17,9 @@ public class PhotoModel {
         return "myauctionsowner";
     }
 
-    //public void editAuction_Id(){photoRepository.editAuction_Id(photoRequest.getId(), photoRequest.getId());}
+    public void remove(int id) {
+        photoRepository.remove(id);
+    }
 
     public String editLink() {
         photoRepository.editLink(photoRequest.getLink(), photoRequest.getId());

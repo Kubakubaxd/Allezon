@@ -7,7 +7,6 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Named
 @RequestScoped
@@ -23,8 +22,15 @@ public class PhotoRepository {
     @Transactional
     public void create(int auction_id, String link) {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
-        PhotoEntity photoEntity =  new PhotoEntity(link, auctionEntity);
+        PhotoEntity photoEntity = new PhotoEntity(link, auctionEntity);
         em.persist(photoEntity);
+    }
+
+    @Transactional
+    String remove(int id) {
+        PhotoEntity photoEntity = em.find(PhotoEntity.class, id);
+        em.remove(photoEntity);
+        return "myauctionsowner";
     }
 
     @Transactional

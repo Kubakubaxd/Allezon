@@ -6,3 +6,11 @@ databaseChangeLog:
         relativeToChangelogFile: true
         splitStatements: false
         path: 20191030_init.sql
+
+  - changeSet:
+      id: users
+      author: Jakub Kwiatkowski
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: users.sql

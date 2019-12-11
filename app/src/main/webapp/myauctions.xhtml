@@ -4,7 +4,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">>
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
@@ -12,6 +12,14 @@
 </h:head>
 
 <h:body>
+    <h:form>
+        <h:commandButton value="Logout" action="#{loginController.logout}" styleClass="btn btn-primary"/>
+        <h:commandButton value="My auctions" action="myauctionsowner" styleClass="btn btn-primary"/>
+        <h:commandButton value="All auctions" action="myauctions" styleClass="btn btn-primary"/>
+        <h:commandButton value="Create auction" action="auction" styleClass="btn btn-primary"/>
+        <h:commandButton value="Admin Panel" action="index" styleClass="btn btn-primary"
+                         rendered="#{sessionAsk.isAdmin()}"/>
+    </h:form>
 
     <h:form id="myauctions">
         <h:dataTable value="#{auctionRepository.allAuctions}" var="item"

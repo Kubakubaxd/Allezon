@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "auction_parameter")
 public class AuctionParameterValue {
     @EmbeddedId
-    //@GeneratedValue
     private AuctionParameterId auctionParameterId;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

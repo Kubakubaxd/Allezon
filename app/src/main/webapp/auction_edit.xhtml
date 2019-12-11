@@ -16,6 +16,13 @@
 </f:metadata>
 
 <h:body>
+    <h:form>
+        <h:commandButton value="Logout" action="#{loginController.logout}" styleClass="btn btn-primary"/>
+        <h:commandButton value="My auctions" action="myauctionsowner" styleClass="btn btn-primary"/>
+        <h:commandButton value="All auctions" action="myauctions" styleClass="btn btn-primary"/>
+        <h:commandButton value="Admin Panel" action="index" styleClass="btn btn-primary"
+                         rendered="#{sessionAsk.admin}"/>
+    </h:form>
     <div class="container-fluid">
         <div class="row">
             <div class="pt-5 mx-auto">
@@ -64,6 +71,8 @@
                                 <h:link value="Edit" outcome="photo_edit">
                                     <f:param name="photoid" value="#{item.id}"/>
                                 </h:link>
+                                <h:commandButton value="Remove" action="#{photoModel.remove(item.id)}"
+                                                 styleClass="btn btn-primary"/>
                             </h:column>
                         </h:dataTable>
                         <h:link value="Add photo" outcome="photo">
@@ -85,6 +94,10 @@
                                 </h:link>
 
                             </h:column>
+
+                            <h:link value="Add parameter" outcome="auction_parameter">
+                                <f:param name="auctionid" value="#{param['auctionid']}"/>
+                            </h:link>
                         </h:dataTable>
                     </h:form>
 

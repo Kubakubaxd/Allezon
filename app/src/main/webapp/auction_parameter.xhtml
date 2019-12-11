@@ -9,21 +9,17 @@
     <h:outputStylesheet name="main.css" library="css"/>
     <h:outputStylesheet name="bootstrap.min.css" library="css"/>
 </h:head>
-<body>
 
+<f:metadata>
+    <f:viewParam name="auctionid" value="#{auctionParameterRequest.auction_id}"/>
+</f:metadata>
+
+<body>
 <div class="container-fluid">
     <div class="row">
         <div class="pt-5 mx-auto">
             <div class="card">
                 <h:form>
-                    <div>
-                        <h:outputText value="auction_id"/>
-                        <h:selectOneMenu value="#{auctionParameterRequest.auction_id}">
-                            <c:forEach var="item" items="#{auctionRepository.getAllAuctions()}">
-                                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id} : #{item.description}"/>
-                            </c:forEach>
-                        </h:selectOneMenu>
-                    </div>
 
                     <div>
                         <h:outputText value="parameter_id"/>

@@ -32,35 +32,27 @@ public class AuctionRepository {
         return !(search == null);
     }
 
-//    @Transactional
-//    public void create(String description, int section_id, int price) {
-//        if (sectionRepository.isSectionExist(section_id)) {
-//            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
-//            String owner = sessionAsk.getUsername();
-//            AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price, owner);
-//            em.persist(auctionEntity);
-//        }
-//    }
+    @Transactional
+    public void create(String description, int section_id, int price) {
+        if (sectionRepository.isSectionExist(section_id)) {
+            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
+            String owner = sessionAsk.getUsername();
+            AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price, owner);
+            em.persist(auctionEntity);
+        }
+    }
 
     @Transactional
     public void create(String description, int section_id, int price, String link) {
         if (sectionRepository.isSectionExist(section_id)) {
-            System.out.println("IDZIE 1 <------------------------------------------------------------------------------------------");
             SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
             String owner = sessionAsk.getUsername();
             AuctionEntity auctionEntity = new AuctionEntity(description, sectionEntity, price, owner);
-            System.out.println("IDZIE 2 <------------------------------------------------------------------------------------------");
             //List<PhotoEntity> list = auctionEntity.getPhotoEntityList();
             ArrayList<PhotoEntity> lista = new ArrayList<>();
-            System.out.println("IDZIE 3 <------------------------------------------------------------------------------------------");
             PhotoEntity photo = new PhotoEntity(link);
-            System.out.println("IDZIE 4 <------------------------------------------------------------------------------------------");
             lista.add(photo);
-            System.out.println("IDZIE 5 <------------------------------------------------------------------------------------------");
             auctionEntity.setPhotoEntityList(lista);
-
-            System.out.println("IDZIE 6 <------------------------------------------------------------------------------------------");
-
             em.persist(auctionEntity);
         }
     }
@@ -138,7 +130,7 @@ public class AuctionRepository {
     }
 
 
-    @Transactional
+    //@Transactional
     public List<AuctionParameterValue> findParametersByAuctionId(int id) {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
         List<AuctionParameterValue> list = auctionEntity.getAuctionParameterList();
@@ -147,7 +139,7 @@ public class AuctionRepository {
             ParameterEntity parameterEntity = new ParameterEntity("EMPTY");
             parameterEntity.setId(0);
             AuctionEntity auctionEntity1 = new AuctionEntity();
-            auctionEntity1.setId(-1);
+            auctionEntity1.setId(0);
             AuctionParameterValue parameter = new AuctionParameterValue(parameterEntity, "EMPTY");
             parameter.setAuctionEntity(auctionEntity1);
             list.add(parameter);

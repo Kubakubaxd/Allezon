@@ -16,7 +16,7 @@ public class AuctionModel {
     AuctionRequest req;
 
     public String create() {
-        auctionRepository.create(req.getDescription(), req.getSectionId(), req.getPrice(), req.getPhotoLink());
+        auctionRepository.create(req.getDescription(), req.getSectionId(), req.getPrice());
         return "myauctionsowner";
     }
 

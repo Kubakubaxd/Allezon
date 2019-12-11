@@ -6,9 +6,16 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
     <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
 </h:head>
 <body>
-
+<h:form>
+    <h:commandButton value="Logout" action="#{loginController.logout}" styleClass="btn btn-primary"/>
+    <h:commandButton value="My auctions" action="myauctionsowner" styleClass="btn btn-primary"/>
+    <h:commandButton value="All auctions" action="myauctions" styleClass="btn btn-primary"/>
+    <h:commandButton value="Admin Panel" action="index" styleClass="btn btn-primary"
+                     rendered="#{sessionAsk.isAdmin()}"/>
+</h:form>
 <h:form>
     <div class="form-group">
         <h:outputText value="name"/>

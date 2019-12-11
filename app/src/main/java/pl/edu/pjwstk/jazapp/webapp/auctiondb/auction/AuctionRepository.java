@@ -129,6 +129,11 @@ public class AuctionRepository {
         return !em.find(AuctionEntity.class, id).getPhotoEntityList().isEmpty();
     }
 
+    @Transactional
+    public boolean isParameterInAuction(int id) {
+        return !em.find(AuctionEntity.class, id).getAuctionParameterList().isEmpty();
+    }
+
 
     //@Transactional
     public List<AuctionParameterValue> findParametersByAuctionId(int id) {

@@ -22,7 +22,6 @@ public class AuctionParameterValue {
     @JoinColumn(name = "parameter_id")
     private ParameterEntity parameterEntity;
 
-
     @Column(name = "value")
     private String value;
 

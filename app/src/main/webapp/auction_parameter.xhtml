@@ -20,7 +20,7 @@
         <div class="pt-5 mx-auto">
             <div class="card">
                 <h:form>
-
+                    <f:param name="auctionid" value="#{param['auctionid']}"/>
                     <div>
                         <h:outputText value="parameter_id"/>
                         <h:selectOneMenu value="#{auctionParameterRequest.parameter}">
@@ -37,7 +37,15 @@
                     </div>
                     <h:commandButton value="Create!" action="#{auctionParameterModel.create}"
                                      styleClass="btn btn-primary"/>
+
                 </h:form>
+
+                <h:form>
+                    <h:link value="Back" outcome="myauctionsowner">
+                        <f:param name="auctionid" value="#{param['auctionid']}"/>
+                    </h:link>
+                </h:form>
+
 
             </div>
         </div>

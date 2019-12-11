@@ -71,8 +71,6 @@
                                 <h:link value="Edit" outcome="photo_edit">
                                     <f:param name="photoid" value="#{item.id}"/>
                                 </h:link>
-                                <h:commandButton value="Remove" action="#{photoModel.remove(item.id)}"
-                                                 styleClass="btn btn-primary"/>
                             </h:column>
                         </h:dataTable>
                         <h:link value="Add photo" outcome="photo">
@@ -83,6 +81,7 @@
                     <h:form>
                         <h:outputText value="Parameters: "/>
                         <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}"
+                                     rendered="#{auctionRepository.isParameterInAuction(param['auctionid'])}"
                                      var="item" styleClass="order-table" headerClass="order-table-header"
                                      rowClasses="order-table-odd-row,order-table-even-row">
                             <h:column>
@@ -94,11 +93,10 @@
                                 </h:link>
 
                             </h:column>
-
-                            <h:link value="Add parameter" outcome="auction_parameter">
-                                <f:param name="auctionid" value="#{param['auctionid']}"/>
-                            </h:link>
                         </h:dataTable>
+                        <h:link value="Add parameter" outcome="auction_parameter">
+                            <f:param name="auctionid" value="#{param['auctionid']}"/>
+                        </h:link>
                     </h:form>
 
                 </div>

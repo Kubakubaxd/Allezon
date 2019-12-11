@@ -35,10 +35,9 @@ public class AuctionParameterRepository {
     public void edit(int auction_id, int parameter_id, String value) {
         AuctionParameterId auctionParameterId = new AuctionParameterId(auction_id, parameter_id);
         AuctionParameterValue auctionParameterValue = em.find(AuctionParameterValue.class, auctionParameterId);
-        em.remove(auctionParameterValue);
 
         auctionParameterValue.setValue(value);
-        em.persist(auctionParameterValue);
+        em.merge(auctionParameterValue);
     }
 
 }

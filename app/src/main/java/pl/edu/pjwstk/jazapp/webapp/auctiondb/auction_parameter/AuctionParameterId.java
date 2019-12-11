@@ -1,16 +1,15 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
 public class AuctionParameterId implements Serializable {
 
-    @Column(name = "auction_id")
+    //@Column(name = "auction_id")
     private int auction_id;
 
-    @Column(name = "parameter_id")
+    //@Column(name = "parameter_id")
     private int parameter_id;
 
     public AuctionParameterId() {

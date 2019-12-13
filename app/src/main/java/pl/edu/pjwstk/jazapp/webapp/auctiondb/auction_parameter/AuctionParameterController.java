@@ -6,17 +6,19 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class AuctionParameterModel {
+public class AuctionParameterController {
     @Inject
     AuctionParameterRequest request;
     @Inject
     AuctionParameterRepository repository;
 
-    public void create() {
+    public String create() {
         repository.create(request.getAuction_id(), request.getParameter(), request.getValue());
+        return "myauctions";
     }
 
-    public void edit() {
+    public String edit() {
         repository.edit(request.getAuction_id(), request.getParameter(), request.getValue());
+        return "myauctions";
     }
 }

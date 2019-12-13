@@ -24,43 +24,49 @@
                          rendered="#{sessionAsk.admin}"/>
     </h:form>
     <div class="container-fluid">
-        <div class="row">
-            <div class="pt-5 mx-auto">
-                <div class="card">
-                    <div class="form-group">
-                        <h:outputText value="Description: "/><br/>
-                        <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).description}"/>
-                    </div>
-                    <div class="form-group">
-                        <h:outputText value="Section: "/><br/>
-                        <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).section.name}"/>
-                        <br/>
-                    </div>
-                    <div class="form-group">
-                        <h:outputText value="Price: "/><br/>
-                        <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).price}"/>
-                    </div>
-                    <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}" var="item"
-                                 rendered="#{auctionRepository.isPhotoInAuction(param['auctionid'])}"
-                                 styleClass="order-table" headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row,order-table-even-row">
-                        <h:column>
-                            <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
-                        </h:column>
-                    </h:dataTable>
-                    <h:outputText value="Parameters: "/>
-                    <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}"
-                                 rendered="#{auctionRepository.isParameterInAuction(param['auctionid'])}"
-                                 var="item" styleClass="order-table" headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row,order-table-even-row">
-                        <h:column>
-                            <h:outputText value="#{item.parameterEntity.name}: #{item.value}   "/>
-                        </h:column>
-                    </h:dataTable>
+        <h:form>
+            <div class="row">
+                <div class="pt-5 mx-auto">
+                    <div class="card">
+                        <div class="form-group">
+                            <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}"
+                                         var="item"
+                                         rendered="#{auctionRepository.isPhotoInAuction(param['auctionid'])}"
+                                         styleClass="order-table" headerClass="order-table-header"
+                                         rowClasses="order-table-odd-row,order-table-even-row">
+                                <h:column>
+                                    <h:graphicImage url="#{item.link}" width="300px" height="300px"/>
+                                </h:column>
+                            </h:dataTable>
 
+                            <h:outputText value="Description: "/><br/>
+                            <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).description}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputText value="Section: "/><br/>
+                            <h:outputText
+                                    value="#{auctionRepository.findAuctionById(param['auctionid']).section.name}"/>
+                            <br/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputText value="Price: "/><br/>
+                            <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).price}zł"/>
+                        </div>
+
+                        <h:outputText value="Parameters: "/>
+                        <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}"
+                                     rendered="#{auctionRepository.isParameterInAuction(param['auctionid'])}"
+                                     var="item" styleClass="order-table" headerClass="order-table-header"
+                                     rowClasses="order-table-odd-row,order-table-even-row">
+                            <h:column>
+                                <h:outputText value="#{item.parameterEntity.name}: #{item.value}   "/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
                 </div>
             </div>
-        </div>
+        </h:form>
     </div>
+
 </h:body>
 </html>

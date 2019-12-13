@@ -35,7 +35,7 @@
                                          name="description"
                                          id="description"/>
                             <h:commandButton value="Edit description"
-                                             action="#{auctionModel.editDescription()}"
+                                             action="#{auctionController.editDescription()}"
                                              styleClass="btn btn-primary"/>
                         </div>
                         <div class="form-group">
@@ -46,18 +46,18 @@
                                 </c:forEach>
                             </h:selectOneMenu>
                             <br/>
-                            <h:commandButton value="Edit section" action="#{auctionModel.editSection()}"
+                            <h:commandButton value="Edit section" action="#{auctionController.editSection()}"
                                              styleClass="btn btn-primary"/>
                         </div>
                         <div class="form-group">
                             <h:outputText value="Price"/>
                             <h:inputText styleClass="form-control" value="#{auctionRequest.price}" name="price"
                                          id="price"/>
-                            <h:commandButton value="Edit price" action="#{auctionModel.editPrice()}"
+                            <h:commandButton value="Edit price" action="#{auctionController.editPrice()}"
                                              styleClass="btn btn-primary"/>
                         </div>
 
-                        <h:commandButton value="Edit everything" action="#{auctionModel.edit()}"
+                        <h:commandButton value="Edit everything" action="#{auctionController.edit()}"
                                          styleClass="btn btn-primary"/>
                     </h:form>
 

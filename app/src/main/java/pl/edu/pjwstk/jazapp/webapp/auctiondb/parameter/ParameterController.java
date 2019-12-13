@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ParameterModel {
+public class ParameterController {
     @Inject
     ParameterRequest parameterRequest;
     @Inject

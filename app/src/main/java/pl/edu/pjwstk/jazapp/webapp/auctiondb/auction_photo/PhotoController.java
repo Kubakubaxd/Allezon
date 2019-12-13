@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class PhotoModel {
+public class PhotoController {
     @Inject
     PhotoRequest photoRequest;
     @Inject

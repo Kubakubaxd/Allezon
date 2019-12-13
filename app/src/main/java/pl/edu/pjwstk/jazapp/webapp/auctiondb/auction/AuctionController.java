@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class AuctionModel {
+public class AuctionController {
     @Inject
     AuctionRepository auctionRepository;
     @Inject

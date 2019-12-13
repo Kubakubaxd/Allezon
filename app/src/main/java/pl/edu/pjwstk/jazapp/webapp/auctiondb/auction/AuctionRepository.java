@@ -134,8 +134,6 @@ public class AuctionRepository {
         return !em.find(AuctionEntity.class, id).getAuctionParameterList().isEmpty();
     }
 
-
-    //@Transactional
     public List<AuctionParameterValue> findParametersByAuctionId(int id) {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
         List<AuctionParameterValue> list = auctionEntity.getAuctionParameterList();
@@ -150,5 +148,11 @@ public class AuctionRepository {
             list.add(parameter);
         }
         return list;
+    }
+
+    public AuctionEntity findAuctionById(int id) {
+        var auction = em.find(AuctionEntity.class, id);
+        if (auction == null) auction = new AuctionEntity();
+        return auction;
     }
 }

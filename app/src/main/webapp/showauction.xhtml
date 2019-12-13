@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+
+</h:head>
+
+<f:metadata>
+    <f:viewParam name="auctionid" value="#{auctionRequest.id}"/>
+</f:metadata>
+
+<h:body>
+    <h:form>
+        <h:commandButton value="Logout" action="#{loginController.logout}" styleClass="btn btn-primary"/>
+        <h:commandButton value="My auctions" action="myauctionsowner" styleClass="btn btn-primary"/>
+        <h:commandButton value="All auctions" action="myauctions" styleClass="btn btn-primary"/>
+        <h:commandButton value="Admin Panel" action="index" styleClass="btn btn-primary"
+                         rendered="#{sessionAsk.admin}"/>
+    </h:form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="pt-5 mx-auto">
+                <div class="card">
+                    <div class="form-group">
+                        <h:outputText value="Description: "/><br/>
+                        <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).description}"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputText value="Section: "/><br/>
+                        <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).section.name}"/>
+                        <br/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputText value="Price: "/><br/>
+                        <h:outputText value="#{auctionRepository.findAuctionById(param['auctionid']).price}"/>
+                    </div>
+                    <h:dataTable value="#{auctionRepository.findPhotosByAuctionId(param['auctionid'])}" var="item"
+                                 rendered="#{auctionRepository.isPhotoInAuction(param['auctionid'])}"
+                                 styleClass="order-table" headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row">
+                        <h:column>
+                            <h:graphicImage url="#{item.link}" width="100px" height="100px"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputText value="Parameters: "/>
+                    <h:dataTable value="#{auctionRepository.findParametersByAuctionId(param['auctionid'])}"
+                                 rendered="#{auctionRepository.isParameterInAuction(param['auctionid'])}"
+                                 var="item" styleClass="order-table" headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row">
+                        <h:column>
+                            <h:outputText value="#{item.parameterEntity.name}: #{item.value}   "/>
+                        </h:column>
+                    </h:dataTable>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

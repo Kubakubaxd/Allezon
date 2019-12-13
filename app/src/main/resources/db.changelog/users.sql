@@ -33,7 +33,55 @@ VALUES (4, 'Bagażnik');
 INSERT INTO parameter
 VALUES (5, 'Napęd');
 
+INSERT INTO auction
+VALUES (1, 'VW Passat', 1, 120000, 'janusz');
+INSERT INTO auction
+VALUES (2, 'VW Passat RS', 1, 250000, 'admin');
+INSERT INTO auction
+VALUES (3, 'VW Golf', 1, 40000, 'grazyna');
+INSERT INTO auction
+VALUES (4, 'Audi A3', 1, 200000, 'spejson');
 
+INSERT INTO photo
+VALUES (1, 1,
+        'https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_900/https://reginatour.pl/wp-content/uploads/2016/02/volkswagen-passat-b7-1.jpg');
+INSERT INTO photo
+VALUES (2, 1,
+        'https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_900/https://reginatour.pl/wp-content/uploads/2016/02/volkswagen-passat-b7-3.jpg');
+INSERT INTO photo
+VALUES (3, 2,
+        'https://www.forumsamochodowe.pl/galeria/wojna-polnoc-poludnie-a124/volkswagen-passat-kombi-tuning-skaryszew-2012-m10065.jpg');
+INSERT INTO photo
+VALUES (4, 2,
+        'https://www.forumsamochodowe.pl/galeria/wojna-polnoc-poludnie-a124/vw-golf-iii-tuning-zabudowa-car-audio-skaryszew-2012-m10062.jpg');
+INSERT INTO photo
+VALUES (5, 3,
+        'https://s7g10.scene7.com/is/image/volkswagenag/Golf_Small_fleet_1920x1080?Zml0PWNyb3AsMSZmbXQ9d2VicCZxbHQ9Nzkmd2lkPTgwMCZoZWk9NDUwJmFsaWduPTAuMDAsMC4wMCYwYmQw');
+INSERT INTO photo
+VALUES (6, 3,
+        'https://s7g10.scene7.com/is/image/volkswagenag/golf3?Zml0PWNyb3AsMSZmbXQ9d2VicCZxbHQ9Nzkmd2lkPTgwMCZoZWk9NDUwJmFsaWduPTAuMDAsMC4wMCYwYmQw');
+INSERT INTO photo
+VALUES (7, 4,
+        'https://scontent-waw1-1.xx.fbcdn.net/v/t1.15752-9/p1080x2048/78879048_525287041395692_5467133136015982592_n.jpg?_nc_cat=100&_nc_ohc=6ooKNYXPVV0AQniVbwqGdjZkPVkqPDqf8PJlSzRGsfuOspR4H7-E828HA&_nc_ht=scontent-waw1-1.xx&oh=151a8e3fc5d044aa21a017e2e20978f5&oe=5EB2096F');
+INSERT INTO photo
+VALUES (8, 4,
+        'https://scontent-waw1-1.xx.fbcdn.net/v/t1.15752-9/78381910_449448495965877_8070631908716838912_n.jpg?_nc_cat=105&_nc_ohc=dzuJka8AaXIAQmI_ls5C6NnsnuKkJloJBPA4W8nyF3KMERXXyq62twi_w&_nc_ht=scontent-waw1-1.xx&oh=2bb2aabc616a137948500ff87917bdeb&oe=5E740BDB');
 
+INSERT INTO auction_parameter
+VALUES (1, 2, '1.9');
+INSERT INTO auction_parameter
+VALUES (2, 2, '3.0');
+INSERT INTO auction_parameter
+VALUES (3, 2, '1.6');
+INSERT INTO auction_parameter
+VALUES (4, 2, '2.0');
+INSERT INTO auction_parameter
+VALUES (1, 5, 'FWD');
+INSERT INTO auction_parameter
+VALUES (2, 5, 'AWD');
+INSERT INTO auction_parameter
+VALUES (3, 5, 'FWD');
+INSERT INTO auction_parameter
+VALUES (4, 5, 'FWD');
 
 

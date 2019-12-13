@@ -44,7 +44,8 @@
                 <h:graphicImage url="#{item.firstPhoto()}" width="100px" height="100px"/>
             </h:column>
             <h:column>
-                <h:link value="Edit" outcome="auction_edit">
+                <!--                TODO: Zobacz aukcje-->
+                <h:link value="more..." outcome="showauction">
                     <f:param name="auctionid" value="#{item.id}"/>
                 </h:link>
             </h:column>

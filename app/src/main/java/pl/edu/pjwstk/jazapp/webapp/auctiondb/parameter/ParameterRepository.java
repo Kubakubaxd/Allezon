@@ -26,8 +26,8 @@ public class ParameterRepository {
     }
 
     @Transactional
-    public void edit(ParameterEntity parameter, String name) {
-        ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter.getId());
+    public void edit(int id, String name) {
+        ParameterEntity parameterEntity = em.find(ParameterEntity.class, id);
         parameterEntity.setName(name);
         em.persist(parameterEntity);
     }

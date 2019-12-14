@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+</h:head>
+
+<f:metadata>
+    <f:viewParam name="auctionid" value="#{auctionParameterRequest.auction_id}"/>
+</f:metadata>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="pt-5 mx-auto">
+            <div class="card">
+                <h:form>
+                    <f:param name="auctionid" value="#{param['auctionid']}"/>
+                    <div>
+                        <h:outputText value="parameter_id"/>
+                        <h:selectOneMenu value="#{parameterRequest.entity}">
+                            <c:forEach var="item" items="#{parameterRepository.getAllParameters()}">
+                                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.name}"/>
+                            </c:forEach>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group">
+                        <h:outputText value="value"/>
+                        <h:inputText styleClass="form-control" value="#{parameterRequest.name}" name="value"
+                                     id="value"/>
+                    </div>
+                    <h:commandButton value="Create!" action="#{parameterController.edit}"
+                                     styleClass="btn btn-primary"/>
+
+                </h:form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

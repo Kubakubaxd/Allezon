@@ -26,21 +26,10 @@ public class ParameterRepository {
     }
 
     @Transactional
-    public void editName(int id, String name) {
-        if (isExist(id)) {
-            ParameterEntity parameterEntity = em.find(ParameterEntity.class, id);
-            parameterEntity.setName(name);
-            em.persist(parameterEntity);
-        }
-    }
-
-    @Transactional
-    public void editId(int id, int newId) {
-        if (isExist(id)) {
-            ParameterEntity parameterEntity = em.find(ParameterEntity.class, id);
-            parameterEntity.setId(newId);
-            em.persist(parameterEntity);
-        }
+    public void edit(ParameterEntity parameter, String name) {
+        ParameterEntity parameterEntity = em.find(ParameterEntity.class, parameter.getId());
+        parameterEntity.setName(name);
+        em.persist(parameterEntity);
     }
 
     @Transactional

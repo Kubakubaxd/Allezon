@@ -8,6 +8,16 @@ import javax.inject.Named;
 public class ParameterRequest {
     private int id;
     private String name;
+    ParameterEntity entity;
+
+
+    public ParameterEntity getEntity() {
+        return entity;
+    }
+
+    public void setEntity(ParameterEntity entity) {
+        this.entity = entity;
+    }
 
     public int getId() {
         return id;

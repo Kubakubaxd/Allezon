@@ -1,7 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 
@@ -23,5 +22,4 @@ public class PhotoRequest {
     public void setLink(String link) {
         this.link = link;
     }
-
 }

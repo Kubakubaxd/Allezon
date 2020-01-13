@@ -10,7 +10,6 @@ public class AuctionParameterRequest {
     private int parameter;
     private String value;
 
-
     public int getAuction_id() {
         return auction_id;
     }

@@ -25,5 +25,4 @@ public class PhotoController {
         photoRepository.editLink(photoRequest.getLink(), photoRequest.getId());
         return "myauctionsowner";
     }
-
 }

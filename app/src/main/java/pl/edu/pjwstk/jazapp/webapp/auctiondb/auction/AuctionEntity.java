@@ -23,11 +23,9 @@ public class AuctionEntity {
     private SectionEntity section;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
-    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     private List<PhotoEntity> photoEntityList;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
-    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<AuctionParameterValue> AuctionParameterList;
 

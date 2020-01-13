@@ -16,7 +16,6 @@ public class AuctionParameterValue {
     @JoinColumn(name = "auction_id")
     private AuctionEntity auctionEntity;
 
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @MapsId("parameter_id")
     @JoinColumn(name = "parameter_id")

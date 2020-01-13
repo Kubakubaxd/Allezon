@@ -10,13 +10,6 @@ public class SessionAsk {
     @Inject
     private Session session;
 
-//    private String username;
-//    private String firstname;
-//    private String surname;
-//    private String email;
-//    private String birthdate;
-//    private boolean admin;
-
     public String getUsername() {
         return session.getUsername();
     }

@@ -5,11 +5,8 @@ import java.io.Serializable;
 
 @Embeddable
 public class AuctionParameterId implements Serializable {
-
-    //@Column(name = "auction_id")
     private int auction_id;
 
-    //@Column(name = "parameter_id")
     private int parameter_id;
 
     public AuctionParameterId() {

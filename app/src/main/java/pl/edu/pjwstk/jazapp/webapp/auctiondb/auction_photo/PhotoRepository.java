@@ -47,21 +47,4 @@ public class PhotoRepository {
             em.persist(photoEntity);
         }
     }
-
-
-
-//    @Transactional
-//    public void editAuction_Id(int new_id, int auction_id) {
-//        if (isExist(auction_id)) {
-//            PhotoEntity photoEntity = em.find(PhotoEntity.class, auction_id);
-//
-//            photoEntity.getAuctionEntity()
-//            em.persist(photoEntity);
-//        }
-//    }
-
-
-//    public List<PhotoEntity> getPhotosList(int idOfAuction){
-//        return em.createQuery("SELECT c FROM PhotoEntity c WHERE c.auctionEntity.id = :idauction", PhotoEntity.class).setParameter("idauction", idOfAuction).getResultList();
-//    }
 }

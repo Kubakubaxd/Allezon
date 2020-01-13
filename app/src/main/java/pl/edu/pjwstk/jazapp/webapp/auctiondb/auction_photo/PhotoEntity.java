@@ -31,19 +31,15 @@ public class PhotoEntity {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public AuctionEntity getAuctionEntity() {
         return auctionEntity;
     }
-
     public void setAuctionEntity(AuctionEntity auctionEntity) {
         this.auctionEntity = auctionEntity;
     }
-
     public String getLink() {
         return link;
     }

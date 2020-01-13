@@ -8,9 +8,9 @@ databaseChangeLog:
         path: 20191030_init.sql
 
   - changeSet:
-      id: users
+      id: 20190113_changes
       author: Jakub Kwiatkowski
       sqlFile:
         relativeToChangelogFile: true
         splitStatements: false
-        path: users.sql
+        path: 20190113_changes.sql

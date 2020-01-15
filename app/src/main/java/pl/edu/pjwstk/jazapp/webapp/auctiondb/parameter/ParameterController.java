@@ -15,7 +15,6 @@ public class ParameterController {
     public void create() {
         parameterRepository.create(parameterRequest.getName());
     }
-
     public void edit() {
         parameterRepository.edit(parameterRequest.getId(), parameterRequest.getName());
     }

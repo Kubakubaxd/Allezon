@@ -3,7 +3,6 @@ package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-
 @Named
 @RequestScoped
 public class PhotoRequest {

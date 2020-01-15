@@ -38,6 +38,4 @@ public class SectionRepository {
     public List<SectionEntity> getAllSections() {
         return em.createQuery("FROM SectionEntity ", SectionEntity.class).getResultList();
     }
-
-
 }

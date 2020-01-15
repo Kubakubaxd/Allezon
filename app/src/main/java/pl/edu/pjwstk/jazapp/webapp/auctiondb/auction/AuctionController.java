@@ -13,12 +13,17 @@ public class AuctionController {
     AuctionRequest req;
 
     public String create() {
-        auctionRepository.create(req.getDescription(), req.getSectionId(), req.getPrice());
+        auctionRepository.create(req.getTitle(), req.getDescription(), req.getSectionId(), req.getPrice(), req.getLink());
         return "myauctionsowner";
     }
 
     public String edit() {
-        auctionRepository.edit(req.getId(), req.getDescription(), req.getSectionId(), req.getPrice());
+        auctionRepository.edit(req.getId(), req.getTitle(), req.getDescription(), req.getSectionId(), req.getPrice());
+        return "myauctionsowner";
+    }
+
+    public String editTitle() {
+        auctionRepository.editTitle(req.getId(), req.getTitle());
         return "myauctionsowner";
     }
 

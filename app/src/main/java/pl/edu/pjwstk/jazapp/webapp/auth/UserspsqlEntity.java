@@ -27,9 +27,9 @@ public class UserspsqlEntity {
         this.admin = admin;
     }
 
-
     public UserspsqlEntity() {
     }
+
     public String getUsername() {
         return username;
     }
@@ -39,27 +39,21 @@ public class UserspsqlEntity {
     public String getFirstname() {
         return firstname;
     }
-
     public String getSurname() {
         return surname;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getBirthdate() {
         return birthdate;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public boolean isAdmin() {
         return admin;
     }
-
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }

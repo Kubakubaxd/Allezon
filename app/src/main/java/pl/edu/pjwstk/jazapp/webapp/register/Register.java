@@ -17,7 +17,6 @@ public class Register implements Serializable {
     private UserDB userDB;
     @Inject
     private UserspsqlRepository userspsqlRepository;
-
     private String firstname;
     private String surname;
     private String username;

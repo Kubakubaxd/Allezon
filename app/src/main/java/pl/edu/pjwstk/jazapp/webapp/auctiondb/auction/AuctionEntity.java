@@ -16,6 +16,8 @@ public class AuctionEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private String title;
+
     private String description;
 
     @JoinColumn(name = "section_id")
@@ -40,12 +42,30 @@ public class AuctionEntity {
         this.owner = owner;
     }
 
+    public AuctionEntity(String title, String description, SectionEntity section, int price, String owner) {
+        this.title = title;
+        this.description = description;
+        this.section = section;
+        this.price = price;
+        this.owner = owner;
+    }
+
+    public AuctionEntity(String title, String description, SectionEntity section, int price, String owner, List<PhotoEntity> photoEntityList) {
+        this.title = title;
+        this.description = description;
+        this.section = section;
+        this.price = price;
+        this.owner = owner;
+        this.photoEntityList = photoEntityList;
+    }
+
     public AuctionEntity() {
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -86,13 +106,24 @@ public class AuctionEntity {
     public void setAuctionParameterList(List<AuctionParameterValue> auctionParameterList) {
         AuctionParameterList = auctionParameterList;
     }
+
     public boolean isPhoto() {
         return photoEntityList.isEmpty();
     }
+
     public String getOwner() {
         return owner;
     }
+
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

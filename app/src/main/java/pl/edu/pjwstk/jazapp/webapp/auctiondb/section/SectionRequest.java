@@ -4,12 +4,14 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 @Named
 @RequestScoped
 public class SectionRequest {
     @Inject
     private SectionRepository sectionRepository;
+
+    private int id;
+    private String name;
 
     public int getId() {
         return id;
@@ -22,11 +24,7 @@ public class SectionRequest {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    private int id;
-    private String name;
 }

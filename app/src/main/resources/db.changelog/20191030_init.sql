@@ -8,8 +8,6 @@ CREATE TABLE userspsqla
     surname VARCHAR(30),
     email VARCHAR(30),
     birthdate VARCHAR (30),
-    admin BOOLEAN,
 
     PRIMARY KEY (username)
 );
-

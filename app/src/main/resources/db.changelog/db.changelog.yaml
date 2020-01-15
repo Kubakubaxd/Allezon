@@ -14,3 +14,11 @@ databaseChangeLog:
         relativeToChangelogFile: true
         splitStatements: false
         path: 20190113_changes.sql
+
+  - changeSet:
+      id: 20190115_changes
+      author: Jakub Kwiatkowski
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: 20190115_changes.sql

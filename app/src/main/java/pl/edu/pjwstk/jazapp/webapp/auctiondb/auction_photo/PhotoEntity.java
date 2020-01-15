@@ -24,10 +24,8 @@ public class PhotoEntity {
     public PhotoEntity(String link) {
         this.link = link;
     }
-
     public PhotoEntity() {
     }
-
     public int getId() {
         return id;
     }

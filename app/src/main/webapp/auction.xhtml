@@ -26,10 +26,13 @@
 
                     <h:form>
                         <div class="form-group">
+                            <h:outputText value="Title"/>
+                            <h:inputText styleClass="form-control" value="#{auctionRequest.title}"/>
+                        </div>
+
+                        <div class="form-group">
                             <h:outputText value="Description"/>
-                            <h:inputText styleClass="form-control" value="#{auctionRequest.description}"
-                                         name="description"
-                                         id="description"/>
+                            <h:inputText styleClass="form-control" value="#{auctionRequest.description}"/>
                         </div>
 
                         <div>
@@ -42,8 +45,12 @@
                         </div>
                         <div class="form-group">
                             <h:outputText value="Price"/>
-                            <h:inputText styleClass="form-control" value="#{auctionRequest.price}" name="price"
-                                         id="price"/>
+                            <h:inputText styleClass="form-control" value="#{auctionRequest.price}"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputText value="Photo"/>
+                            <h:inputText styleClass="form-control" value="#{auctionRequest.link}"/>
                         </div>
 
                         <h:commandButton value="Create!" action="#{auctionController.create}"

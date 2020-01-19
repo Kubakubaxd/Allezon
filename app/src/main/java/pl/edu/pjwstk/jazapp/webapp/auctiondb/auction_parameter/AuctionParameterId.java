@@ -6,7 +6,6 @@ import java.io.Serializable;
 @Embeddable
 public class AuctionParameterId implements Serializable {
     private int auction_id;
-
     private int parameter_id;
 
     public AuctionParameterId() {

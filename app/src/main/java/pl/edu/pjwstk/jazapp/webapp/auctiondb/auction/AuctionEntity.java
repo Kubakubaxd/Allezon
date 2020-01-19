@@ -5,6 +5,7 @@ import org.hibernate.annotations.FetchMode;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter.AuctionParameterValue;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.category.CategoryEntity;
+import pl.edu.pjwstk.jazapp.webapp.baskets.basketbucket.BasketBucketValue;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,6 +31,10 @@ public class AuctionEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<AuctionParameterValue> AuctionParameterList;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<BasketBucketValue> basketBucketValueList;
 
     private int price;
 

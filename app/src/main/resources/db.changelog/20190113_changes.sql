@@ -6,11 +6,20 @@ CREATE TABLE section
     PRIMARY KEY (id)
 );
 
+CREATE TABLE category
+(
+    id         BIGSERIAL NOT NULL,
+    name       VARCHAR(30),
+    section_id BIGINT references section (id),
+
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE auction
 (
     id          BIGSERIAL NOT NULL,
     description VARCHAR(250),
-    section_id  BIGINT REFERENCES section (id),
+    category_id BIGINT REFERENCES category (id),
     price       INT,
     owner       VARCHAR(30),
 

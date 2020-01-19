@@ -21,9 +21,9 @@
 <h:form>
     <div class="form-group">
         <h:outputText value="name"/>
-        <h:inputText styleClass="form-control" value="#{sectionRequest.name}" name="name"
-                     id="name"/>
+        <h:inputText styleClass="form-control" value="#{sectionRequest.name}"/>
     </div>
+
     <h:commandButton value="Create!" action="#{sectionController.create}"
                      styleClass="btn btn-primary"/>
 </h:form>

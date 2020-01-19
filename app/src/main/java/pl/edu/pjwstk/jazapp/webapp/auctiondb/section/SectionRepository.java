@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
+
 @Named
 @RequestScoped
 public class SectionRepository {
@@ -21,7 +22,7 @@ public class SectionRepository {
 
     @Transactional
     public void edit(int id, String name) {
-        if (isSectionExist(id)) {
+        if (isExist(id)) {
             SectionEntity sectionEntity = em.find(SectionEntity.class, id);
             sectionEntity.setName(name);
             em.merge(sectionEntity);
@@ -29,7 +30,7 @@ public class SectionRepository {
     }
 
     @Transactional
-    public boolean isSectionExist(int id) {
+    public boolean isExist(int id) {
         SectionEntity search = em.find(SectionEntity.class, id);
         return search != null;
     }

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet name="main.css" library="css"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css"/>
+</h:head>
+<body>
+<h:form>
+    <h:commandButton value="Logout" action="#{loginController.logout}" styleClass="btn btn-primary"/>
+    <h:commandButton value="My auctions" action="myauctionsowner" styleClass="btn btn-primary"/>
+    <h:commandButton value="All auctions" action="myauctions" styleClass="btn btn-primary"/>
+    <h:commandButton value="Admin Panel" action="index" styleClass="btn btn-primary"
+                     rendered="#{sessionAsk.isAdmin()}"/>
+</h:form>
+
+<h:form>
+    <div>
+        <h:outputText value="id"/>
+        <h:selectOneMenu value="#{categoryRequest.id}">
+            <c:forEach var="item" items="#{categoryRepository.allSections}">
+                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.name}"/>
+            </c:forEach>
+        </h:selectOneMenu>
+    </div>
+
+    <div class="form-group">
+        <h:outputText value="Name: "/>
+        <h:inputText styleClass="form-control" value="#{categoryRequest.name}" name="name"
+                     id="name"/>
+    </div>
+
+    <div>
+        <h:outputText value="id"/>
+        <h:selectOneMenu value="#{categoryRequest.section_id}">
+            <c:forEach var="item" items="#{sectionRepository.allSections}">
+                <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.name}"/>
+            </c:forEach>
+        </h:selectOneMenu>
+    </div>
+
+
+    <h:commandButton value="Edit!" action="#{categoryController.edit}"
+                     styleClass="btn btn-primary"/>
+</h:form>
+
+</body>
+</html>

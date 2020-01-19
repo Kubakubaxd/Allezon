@@ -4,7 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter.AuctionParameterValue;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
-import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.category.CategoryEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,9 +20,9 @@ public class AuctionEntity {
 
     private String description;
 
-    @JoinColumn(name = "section_id")
+    @JoinColumn(name = "category_id")
     @OneToOne
-    private SectionEntity section;
+    private CategoryEntity category;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "auctionEntity", cascade = CascadeType.PERSIST)
     private List<PhotoEntity> photoEntityList;
@@ -35,28 +35,12 @@ public class AuctionEntity {
 
     private String owner;
 
-    public AuctionEntity(String description, SectionEntity section, int price, String owner) {
-        this.description = description;
-        this.section = section;
-        this.price = price;
-        this.owner = owner;
-    }
-
-    public AuctionEntity(String title, String description, SectionEntity section, int price, String owner) {
+    public AuctionEntity(String title, String description, CategoryEntity category, int price, String owner) {
         this.title = title;
         this.description = description;
-        this.section = section;
+        this.category = category;
         this.price = price;
         this.owner = owner;
-    }
-
-    public AuctionEntity(String title, String description, SectionEntity section, int price, String owner, List<PhotoEntity> photoEntityList) {
-        this.title = title;
-        this.description = description;
-        this.section = section;
-        this.price = price;
-        this.owner = owner;
-        this.photoEntityList = photoEntityList;
     }
 
     public AuctionEntity() {
@@ -69,24 +53,31 @@ public class AuctionEntity {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
-    public SectionEntity getSection() {
-        return section;
+
+    public CategoryEntity getCategory() {
+        return category;
     }
-    public void setSection(SectionEntity section) {
-        this.section = section;
+
+    public void setCategory(CategoryEntity section) {
+        this.category = section;
     }
+
     public int getPrice() {
         return price;
     }
+
     public void setPrice(int price) {
         this.price = price;
     }
+
     public List<PhotoEntity> getPhotoEntityList() {
         return photoEntityList;
     }

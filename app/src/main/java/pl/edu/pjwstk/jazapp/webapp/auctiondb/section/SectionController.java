@@ -15,6 +15,7 @@ public class SectionController {
     public void create() {
         sectionRepository.create(sectionRequest.getName());
     }
+
     public void edit() {
         sectionRepository.edit(sectionRequest.getId(), sectionRequest.getName());
     }

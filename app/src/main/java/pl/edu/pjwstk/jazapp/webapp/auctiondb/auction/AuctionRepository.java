@@ -2,9 +2,9 @@ package pl.edu.pjwstk.jazapp.webapp.auctiondb.auction;
 
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_parameter.AuctionParameterValue;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction_photo.PhotoEntity;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.category.CategoryEntity;
+import pl.edu.pjwstk.jazapp.webapp.auctiondb.category.CategoryRepository;
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.parameter.ParameterEntity;
-import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionEntity;
-import pl.edu.pjwstk.jazapp.webapp.auctiondb.section.SectionRepository;
 import pl.edu.pjwstk.jazapp.webapp.session.SessionAsk;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestScoped
 public class AuctionRepository {
     @Inject
-    SectionRepository sectionRepository;
+    CategoryRepository categoryRepository;
     @Inject
     SessionAsk sessionAsk;
     @PersistenceContext
@@ -34,22 +34,22 @@ public class AuctionRepository {
 
     @Transactional
     public void create(String title, String description, int section_id, int price) {
-        if (sectionRepository.isSectionExist(section_id)) {
-            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
+        if (categoryRepository.isExist(section_id)) {
+            CategoryEntity categoryEntity = em.find(CategoryEntity.class, section_id);
             String owner = sessionAsk.getUsername();
-            AuctionEntity auctionEntity = new AuctionEntity(title, description, sectionEntity, price, owner);
+            AuctionEntity auctionEntity = new AuctionEntity(title, description, categoryEntity, price, owner);
             em.persist(auctionEntity);
         }
     }
 
     @Transactional
     public void create(String title, String description, int section_id, int price, String link) {
-        if (sectionRepository.isSectionExist(section_id)) {
-            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
+        if (categoryRepository.isExist(section_id)) {
+            CategoryEntity categoryEntity = em.find(CategoryEntity.class, section_id);
             String owner = sessionAsk.getUsername();
 
 
-            AuctionEntity auctionEntity = new AuctionEntity(title, description, sectionEntity, price, owner);
+            AuctionEntity auctionEntity = new AuctionEntity(title, description, categoryEntity, price, owner);
             ArrayList<PhotoEntity> lista = new ArrayList<>();
             PhotoEntity photo = new PhotoEntity(link, auctionEntity);
             lista.add(photo);
@@ -61,12 +61,12 @@ public class AuctionRepository {
 
     @Transactional
     public void edit(int id, String title, String description, int section_id, int price) {
-        if (isExist(id) && sectionRepository.isSectionExist(section_id)) {
+        if (isExist(id) && categoryRepository.isExist(section_id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
-            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
+            CategoryEntity categoryEntity = em.find(CategoryEntity.class, section_id);
             auctionEntity.setTitle(title);
             auctionEntity.setDescription(description);
-            auctionEntity.setSection(sectionEntity);
+            auctionEntity.setCategory(categoryEntity);
             auctionEntity.setPrice(price);
             em.merge(auctionEntity);
         }
@@ -92,10 +92,10 @@ public class AuctionRepository {
 
     @Transactional
     public void editSection(int id, int section_id) {
-        if (isExist(id) && sectionRepository.isSectionExist(section_id)) {
+        if (isExist(id) && categoryRepository.isExist(section_id)) {
             AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
-            SectionEntity sectionEntity = em.find(SectionEntity.class, section_id);
-            auctionEntity.setSection(sectionEntity);
+            CategoryEntity categoryEntity = em.find(CategoryEntity.class, section_id);
+            auctionEntity.setCategory(categoryEntity);
             em.merge(auctionEntity);
         }
     }
@@ -128,7 +128,6 @@ public class AuctionRepository {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
         List<PhotoEntity> list = auctionEntity.getPhotoEntityList();
         if (list.isEmpty()) {
-            System.out.println("JEST PUSTO <---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             PhotoEntity photo = new PhotoEntity("https://www.computerhope.com/jargon/e/error.gif");
             photo.setId(0);
             list.add(photo);
@@ -150,7 +149,6 @@ public class AuctionRepository {
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, id);
         List<AuctionParameterValue> list = auctionEntity.getAuctionParameterList();
         if (list.isEmpty()) {
-            System.out.println("JEST PUSTO <---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             ParameterEntity parameterEntity = new ParameterEntity("EMPTY");
             parameterEntity.setId(0);
             AuctionEntity auctionEntity1 = new AuctionEntity();

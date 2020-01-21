@@ -12,8 +12,8 @@ public class BasketBucketValue {
     private BasketBucketId basketBucketId;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @MapsId("owner")
-    @JoinColumn(name = "owner")
+    @MapsId("basket_id")
+    @JoinColumn(name = "basket_id")
     private BasketEntity basketEntity;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

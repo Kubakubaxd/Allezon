@@ -1,6 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.baskets.basket;
 
-import pl.edu.pjwstk.jazapp.webapp.baskets.basketbucket.BasketBucketId;
+import pl.edu.pjwstk.jazapp.webapp.baskets.basketbucket.BasketBucketValue;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,27 +9,29 @@ import java.util.List;
 @Table(name = "basket")
 public class BasketEntity {
     @Id
-    private String owner;
+    private int id;
+
+    private String userpsqla;
 
     private String creationdate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "basketEntity", cascade = CascadeType.PERSIST)
-    private List<BasketBucketId> basketBucketEntities;
+    private List<BasketBucketValue> basketBucketEntities;
 
     public BasketEntity() {
     }
 
-    public BasketEntity(String owner, String creationdate) {
-        this.owner = owner;
+    public BasketEntity(String userpsqla, String creationdate) {
+        this.userpsqla = userpsqla;
         this.creationdate = creationdate;
     }
 
     public String getUserpsqla() {
-        return owner;
+        return userpsqla;
     }
 
     public void setUserpsqla(String userpsqla) {
-        this.owner = userpsqla;
+        this.userpsqla = userpsqla;
     }
 
     public String getCreationdate() {
@@ -40,11 +42,11 @@ public class BasketEntity {
         this.creationdate = creationdate;
     }
 
-    public List<BasketBucketId> getBasketBucketEntities() {
+    public List<BasketBucketValue> getBasketBucketEntities() {
         return basketBucketEntities;
     }
 
-    public void setBasketBucketEntities(List<BasketBucketId> basketBucketEntities) {
+    public void setBasketBucketEntities(List<BasketBucketValue> basketBucketEntities) {
         this.basketBucketEntities = basketBucketEntities;
     }
 }

@@ -39,9 +39,10 @@
                         <br/>
                         <h:commandLink action="myauctionsowner" value="Show my auctions"/>
                         <br/>
-                        <h:commandLink action="#{basket.create()}" value="Create basket"/>
+                        <h:commandLink action="#{basketController.create()}" value="Create basket"/>
                         <br/>
-
+                        <h:commandButton value="Create basket" action="#{basketController.create}"
+                                         styleClass="btn btn-primary"/>
                     </h:form>
                 </div>
             </div>

@@ -49,24 +49,31 @@ public class AuctionRequest {
     public void setSectionId(int sectionId) {
         this.sectionId = sectionId;
     }
+
     public int getPrice() {
         return price;
     }
+
     public void setPrice(int price) {
         this.price = price;
     }
+
     public String getOwner() {
         return owner;
     }
+
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
     public String getPhotoLink() {
         return photoLink;
     }
+
     public void setPhotoLink(String photoLink) {
         this.photoLink = photoLink;
     }
+
     public int getParameter() {
         return parameter;
     }

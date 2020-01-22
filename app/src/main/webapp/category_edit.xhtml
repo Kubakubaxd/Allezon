@@ -22,7 +22,7 @@
     <div>
         <h:outputText value="id"/>
         <h:selectOneMenu value="#{categoryRequest.id}">
-            <c:forEach var="item" items="#{categoryRepository.allSections}">
+            <c:forEach var="item" items="#{categoryRepository.allCategories}">
                 <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.name}"/>
             </c:forEach>
         </h:selectOneMenu>
@@ -35,7 +35,7 @@
     </div>
 
     <div>
-        <h:outputText value="id"/>
+        <h:outputText value="Section: "/>
         <h:selectOneMenu value="#{categoryRequest.section_id}">
             <c:forEach var="item" items="#{sectionRepository.allSections}">
                 <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.name}"/>

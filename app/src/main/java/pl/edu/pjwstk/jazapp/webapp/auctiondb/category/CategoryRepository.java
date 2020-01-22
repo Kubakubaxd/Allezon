@@ -40,7 +40,7 @@ public class CategoryRepository {
     }
 
     @Transactional
-    public List<CategoryEntity> getAllSections() {
+    public List<CategoryEntity> getAllCategories() {
         return em.createQuery("FROM CategoryEntity ", CategoryEntity.class).getResultList();
     }
 }

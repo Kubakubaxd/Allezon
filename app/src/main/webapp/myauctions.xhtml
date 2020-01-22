@@ -33,7 +33,7 @@
             </h:column>
 
             <h:column>
-                <h:outputText value="Description: #{item.description}"/>
+                <h:outputText value="Title: #{item.title}"/>
             </h:column>
 
             <h:column>
@@ -47,6 +47,9 @@
                 <h:link value="more..." outcome="showauction">
                     <f:param name="auctionid" value="#{item.id}"/>
                 </h:link>
+            </h:column>
+            <h:column>
+                <h:commandLink action="#{basketBucketController.createWithOnwer(item.id)}" value="Add to basket"/>
             </h:column>
         </h:dataTable>
     </h:form>

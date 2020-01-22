@@ -1,7 +1,7 @@
 CREATE TABLE basket
 (
     id           BIGSERIAL NOT NULL,
-    userpsqla    VARCHAR(30) REFERENCES userspsqla (username),
+    userpsqla    VARCHAR(30) REFERENCES userspsqla (username) UNIQUE,
     creationdate VARCHAR(10),
 
     primary key (id)

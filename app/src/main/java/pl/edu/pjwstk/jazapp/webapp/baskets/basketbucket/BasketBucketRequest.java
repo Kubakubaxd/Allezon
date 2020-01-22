@@ -7,14 +7,14 @@ import javax.inject.Named;
 @RequestScoped
 public class BasketBucketRequest {
     private int quantity;
-    private String basket_id;
+    private int basket_id;
     private int auction_id;
 
-    public String getBasket_id() {
+    public int getBasket_id() {
         return basket_id;
     }
 
-    public void setBasket_id(String basket_id) {
+    public void setBasket_id(int basket_id) {
         this.basket_id = basket_id;
     }
 

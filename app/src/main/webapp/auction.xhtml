@@ -38,7 +38,7 @@
                         <div>
                             <h:outputText value="section_id"/>
                             <h:selectOneMenu value="#{auctionRequest.sectionId}">
-                                <c:forEach var="item" items="#{categoryRepository.getAllSections()}">
+                                <c:forEach var="item" items="#{categoryRepository.allCategories}">
                                     <f:selectItem itemValue="#{item.id}"
                                                   itemLabel="#{item.sectionEntity.name} : #{item.name}"/>
                                 </c:forEach>

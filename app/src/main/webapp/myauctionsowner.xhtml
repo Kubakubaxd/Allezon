@@ -28,13 +28,14 @@
                      headerClass="order-table-header"
                      rowClasses="order-table-odd-row,order-table-even-row">
 
+
             <h:column>
                 <h:inputHidden value="#{item.id}" name="auction_id"/>
-                <h:outputText value="Section: #{item.section.name}"/>
+                <h:outputText value="Category: #{item.category.name}"/>
             </h:column>
 
             <h:column>
-                <h:outputText value="Description: #{item.description}"/>
+                <h:outputText value="Title: #{item.title}"/>
             </h:column>
 
             <h:column>

@@ -5,23 +5,23 @@ import java.io.Serializable;
 
 @Embeddable
 public class BasketBucketId implements Serializable {
-    private int basket_id;
+    private String owner;
     private int auction_id;
 
     public BasketBucketId() {
     }
 
-    public BasketBucketId(int basket_id, int auction_id) {
-        this.basket_id = basket_id;
+    public BasketBucketId(String owner, int auction_id) {
+        this.owner = owner;
         this.auction_id = auction_id;
     }
 
-    public int getBasket_id() {
-        return basket_id;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setBasket_id(int basket_id) {
-        this.basket_id = basket_id;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public int getAuction_id() {

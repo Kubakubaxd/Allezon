@@ -9,9 +9,7 @@ import java.util.List;
 @Table(name = "basket")
 public class BasketEntity {
     @Id
-    private int id;
-
-    private String userpsqla;
+    private String owner;
 
     private String creationdate;
 
@@ -21,25 +19,17 @@ public class BasketEntity {
     public BasketEntity() {
     }
 
-    public BasketEntity(String userpsqla, String creationdate) {
-        this.userpsqla = userpsqla;
+    public BasketEntity(String owner, String creationdate) {
+        this.owner = owner;
         this.creationdate = creationdate;
     }
 
-    public int getId() {
-        return id;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserpsqla() {
-        return userpsqla;
-    }
-
-    public void setUserpsqla(String userpsqla) {
-        this.userpsqla = userpsqla;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getCreationdate() {

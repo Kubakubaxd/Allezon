@@ -16,11 +16,7 @@ public class BasketBucketController {
     @Inject
     SessionAsk session;
 
-    public void create() {
-        repo.create(req.getBasket_id(), req.getAuction_id(), req.getQuantity());
-    }
-
-    public void createWithOnwer(int auction_id) {
-        repo.createWithOwner(session.getUsername(), auction_id);
+    public void create(int auction_id) {
+        repo.create(session.getUsername(), auction_id, 1);
     }
 }

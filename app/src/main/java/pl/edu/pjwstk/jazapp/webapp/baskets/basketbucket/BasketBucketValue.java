@@ -12,8 +12,8 @@ public class BasketBucketValue {
     private BasketBucketId basketBucketId;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @MapsId("basket_id")
-    @JoinColumn(name = "basket_id")
+    @MapsId("owner")
+    @JoinColumn(name = "basket_owner")
     private BasketEntity basketEntity;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -33,6 +33,12 @@ public class BasketBucketValue {
         this.auctionEntity = auctionEntity;
         this.quantity = quantity;
     }
+
+    public BasketBucketValue(BasketBucketId basketBucketId, int quantity) {
+        this.basketBucketId = basketBucketId;
+        this.quantity = quantity;
+    }
+
 
     public BasketBucketId getBasketBucketId() {
         return basketBucketId;

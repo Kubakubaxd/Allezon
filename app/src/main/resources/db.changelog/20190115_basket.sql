@@ -1,15 +1,14 @@
 CREATE TABLE basket
 (
-    id           BIGSERIAL NOT NULL,
-    userpsqla    VARCHAR(30) REFERENCES userspsqla (username) UNIQUE,
+    owner        VARCHAR(30),
     creationdate VARCHAR(10),
 
-    primary key (id)
+    primary key (owner)
 );
 
 CREATE TABLE basketbucket
 (
-    basket_id  BIGINT REFERENCES basket (id),
-    auction_id BIGINT REFERENCES auction (id),
-    quantity   INT
+    basket_owner VARCHAR(30) REFERENCES basket (owner),
+    auction_id   BIGINT REFERENCES auction (id),
+    quantity     INT
 );

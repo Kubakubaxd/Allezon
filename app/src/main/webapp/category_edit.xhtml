@@ -20,7 +20,7 @@
 
 <h:form>
     <div>
-        <h:outputText value="id"/>
+        <h:outputText value="Kategoria: "/>
         <h:selectOneMenu value="#{categoryRequest.id}">
             <c:forEach var="item" items="#{categoryRepository.allCategories}">
                 <f:selectItem itemValue="#{item.id}" itemLabel="#{item.id}: #{item.name}"/>

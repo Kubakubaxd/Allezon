@@ -13,32 +13,7 @@ public class AuctionController {
     AuctionRequest req;
 
     public String create() {
-        auctionRepository.create(req.getTitle(), req.getDescription(), req.getSectionId(), req.getPrice(), req.getLink());
-        return "myauctionsowner";
-    }
-
-    public String edit() {
-        auctionRepository.edit(req.getId(), req.getTitle(), req.getDescription(), req.getSectionId(), req.getPrice());
-        return "myauctionsowner";
-    }
-
-    public String editTitle() {
-        auctionRepository.editTitle(req.getId(), req.getTitle());
-        return "myauctionsowner";
-    }
-
-    public String editDescription() {
-        auctionRepository.editDescription(req.getId(), req.getDescription());
-        return "myauctionsowner";
-    }
-
-    public String editSection() {
-        auctionRepository.editSection(req.getId(), req.getSectionId());
-        return "myauctionsowner";
-    }
-
-    public String editPrice() {
-        auctionRepository.editPrice(req.getId(), req.getPrice());
+        auctionRepository.create(req.getTitle(), req.getDescription(), req.getCategoryId(), req.getPrice(), req.getLink());
         return "myauctionsowner";
     }
 }

@@ -9,7 +9,7 @@ import javax.inject.Named;
 public class AuctionRequest {
     private int id;
     private String description;
-    private int sectionId;
+    private int categoryId;
     private int price;
     private String owner;
     private String photoLink;
@@ -17,6 +17,18 @@ public class AuctionRequest {
     private String value;
     private String title;
     private String link;
+
+    public AuctionRequest(int id, String title, String description, int categoryId, int price, String photoLink) {
+        this.id = id;
+        this.description = description;
+        this.categoryId = categoryId;
+        this.price = price;
+        this.photoLink = photoLink;
+        this.title = title;
+    }
+
+    public AuctionRequest() {
+    }
 
     public int getId() {
         return id;
@@ -42,12 +54,12 @@ public class AuctionRequest {
         this.description = description;
     }
 
-    public int getSectionId() {
-        return sectionId;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setSectionId(int sectionId) {
-        this.sectionId = sectionId;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getPrice() {

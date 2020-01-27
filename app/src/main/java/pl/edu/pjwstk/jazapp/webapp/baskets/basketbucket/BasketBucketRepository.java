@@ -1,9 +1,11 @@
 package pl.edu.pjwstk.jazapp.webapp.baskets.basketbucket;
 
 import pl.edu.pjwstk.jazapp.webapp.auctiondb.auction.AuctionEntity;
+import pl.edu.pjwstk.jazapp.webapp.baskets.basket.BasketController;
 import pl.edu.pjwstk.jazapp.webapp.baskets.basket.BasketEntity;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -13,6 +15,8 @@ import java.util.List;
 public class BasketBucketRepository {
     @PersistenceContext
     private EntityManager em;
+    @Inject
+    BasketController basketController;
 
     @Transactional
     public void create(String basket_owner, int auction_id, int quantityToAdd) {
@@ -31,13 +35,17 @@ public class BasketBucketRepository {
         }
     }
 
+    public List<BasketBucketValue> findByOwner(String owner) {
+        BasketEntity basketEntity = basketController.find(owner);
+        if (basketEntity == null) {
+            return null;
+        }
+        List<BasketBucketValue> basketEntities = basketEntity.getBasketBucketEntities();
+        if (basketEntities.isEmpty()) return null;
+        else return basketEntities;
+    }
+
     public boolean isExist(BasketBucketId basketBucketId) {
         return em.find(BasketBucketValue.class, basketBucketId) != null;
     }
-
-    public List<BasketBucketValue> findByOwner(String owner) {
-        BasketEntity basketEntity = em.find(BasketEntity.class, owner);
-        return basketEntity.getBasketBucketEntities();
-    }
-
 }

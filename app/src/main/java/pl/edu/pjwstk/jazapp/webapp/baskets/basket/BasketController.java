@@ -9,11 +9,12 @@ import javax.inject.Named;
 public class BasketController {
     @Inject
     BasketRepository repo;
-//        @Inject
-//        AuctionRequest req;
 
     public void create() {
         repo.create();
-        //return "myauctionsowner";
+    }
+
+    public BasketEntity find(String owner) {
+        return repo.find(owner);
     }
 }

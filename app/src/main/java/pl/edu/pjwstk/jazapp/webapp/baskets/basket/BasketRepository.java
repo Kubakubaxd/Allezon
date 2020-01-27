@@ -29,4 +29,16 @@ public class BasketRepository {
         System.out.println(dtf.format(now));
         return dtf.format(now);
     }
+
+    public BasketEntity find(String owner) {
+        if (isEmpty(owner)) {
+            return null;
+        } else {
+            return em.find(BasketEntity.class, owner);
+        }
+    }
+
+    private boolean isEmpty(String owner) {
+        return em.find(BasketEntity.class, owner) != null;
+    }
 }

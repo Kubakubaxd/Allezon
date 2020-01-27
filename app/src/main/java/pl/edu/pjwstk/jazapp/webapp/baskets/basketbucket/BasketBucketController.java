@@ -16,7 +16,11 @@ public class BasketBucketController {
     @Inject
     SessionAsk session;
 
-    public void create(int auction_id) {
-        repo.create(session.getUsername(), auction_id, 1);
+    public void add(int auction_id) {
+        repo.add(session.getUsername(), auction_id, 1);
+    }
+
+    public void remove(BasketBucketId basketBucketId) {
+        repo.remove(basketBucketId);
     }
 }

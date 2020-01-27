@@ -13,7 +13,7 @@ public class BasketBucketResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("api/{owner}")
+    @Path("{owner}")
     public List<BasketBucketValue> getBasketBucketValueByOwner(String owner) {
         return repo.findByOwner(owner);
     }

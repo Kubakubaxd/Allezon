@@ -19,7 +19,7 @@ public class BasketBucketRepository {
     BasketController basketController;
 
     @Transactional
-    public void create(String basket_owner, int auction_id, int quantityToAdd) {
+    public void add(String basket_owner, int auction_id, int quantityToAdd) {
         BasketEntity basketEntity = em.find(BasketEntity.class, basket_owner);
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
         BasketBucketId basketBucketId = new BasketBucketId(basket_owner, auction_id);
@@ -33,6 +33,15 @@ public class BasketBucketRepository {
             BasketBucketValue basketBucketValue = new BasketBucketValue(basketBucketId, basketEntity, auctionEntity, quantityToAdd);
             em.persist(basketBucketValue);
         }
+    }
+
+    @Transactional
+    public void remove(BasketBucketId basketBucketId) {
+        BasketBucketValue basketBucketValue = em.find(BasketBucketValue.class, basketBucketId);
+        //em.getTransaction().begin();
+        em.remove(basketBucketValue);
+        //em.getTransaction().commit();
+
     }
 
     public List<BasketBucketValue> findByOwner(String owner) {

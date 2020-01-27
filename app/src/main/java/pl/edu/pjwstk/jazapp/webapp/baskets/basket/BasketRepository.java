@@ -1,5 +1,6 @@
 package pl.edu.pjwstk.jazapp.webapp.baskets.basket;
 
+import pl.edu.pjwstk.jazapp.webapp.baskets.basketbucket.BasketBucketValue;
 import pl.edu.pjwstk.jazapp.webapp.session.SessionAsk;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @ApplicationScoped
 public class BasketRepository {
@@ -30,15 +32,18 @@ public class BasketRepository {
         return dtf.format(now);
     }
 
+    //TODO: updateCurrentDate()
+    //TODO: Kiedy tworzę koszyk?
+
     public BasketEntity find(String owner) {
-        if (isEmpty(owner)) {
-            return null;
-        } else {
-            return em.find(BasketEntity.class, owner);
-        }
+        var basketEntity = em.find(BasketEntity.class, owner);
+        if (basketEntity == null) return new BasketEntity();
+        return basketEntity;
     }
 
-    private boolean isEmpty(String owner) {
-        return em.find(BasketEntity.class, owner) != null;
+    public List<BasketBucketValue> getBasketBuckets(String owner) {
+        BasketEntity basketEntity = find(owner);
+        return basketEntity.getBasketBucketEntities();
     }
 }
+

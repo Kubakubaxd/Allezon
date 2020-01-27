@@ -24,7 +24,8 @@ public class LoginFilter extends HttpFilter {
                 req.getRequestURI().contains("/javax.faces.resource/main.css.xhtml") ||
                 req.getRequestURI().contains("/javax.faces.resource/bootstrap.min.css.xhtml") ||
                 req.getRequestURI().contains("/javax.faces.resource/login.xhtml") ||
-                req.getRequestURI().contains("/register.xhtml")) {
+                req.getRequestURI().contains("/register.xhtml") ||
+                req.getRequestURI().contains("/api")) {
             System.out.println("REQUESTED URI:" + req.getRequestURI());
             chain.doFilter(req, res);
         } else {

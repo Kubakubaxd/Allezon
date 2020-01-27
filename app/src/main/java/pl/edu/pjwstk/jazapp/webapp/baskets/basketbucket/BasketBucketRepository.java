@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @ApplicationScoped
 public class BasketBucketRepository {
@@ -33,4 +34,10 @@ public class BasketBucketRepository {
     public boolean isExist(BasketBucketId basketBucketId) {
         return em.find(BasketBucketValue.class, basketBucketId) != null;
     }
+
+    public List<BasketBucketValue> findByOwner(String owner) {
+        BasketEntity basketEntity = em.find(BasketEntity.class, owner);
+        return basketEntity.getBasketBucketEntities();
+    }
+
 }

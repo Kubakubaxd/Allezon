@@ -20,6 +20,9 @@ public class BasketBucketRepository {
 
     @Transactional
     public void add(String basket_owner, int auction_id, int quantityToAdd) {
+        if (!basketController.isExist()) basketController.create();
+        else basketController.removeIfDateExpired();
+
         BasketEntity basketEntity = em.find(BasketEntity.class, basket_owner);
         AuctionEntity auctionEntity = em.find(AuctionEntity.class, auction_id);
         BasketBucketId basketBucketId = new BasketBucketId(basket_owner, auction_id);
@@ -33,15 +36,15 @@ public class BasketBucketRepository {
             BasketBucketValue basketBucketValue = new BasketBucketValue(basketBucketId, basketEntity, auctionEntity, quantityToAdd);
             em.persist(basketBucketValue);
         }
+
+        basketController.updateDate();
     }
 
     @Transactional
     public void remove(BasketBucketId basketBucketId) {
         BasketBucketValue basketBucketValue = em.find(BasketBucketValue.class, basketBucketId);
-        //em.getTransaction().begin();
+        em.detach(basketBucketValue);
         em.remove(basketBucketValue);
-        //em.getTransaction().commit();
-
     }
 
     public List<BasketBucketValue> findByOwner(String owner) {
@@ -56,5 +59,23 @@ public class BasketBucketRepository {
 
     public boolean isExist(BasketBucketId basketBucketId) {
         return em.find(BasketBucketValue.class, basketBucketId) != null;
+    }
+
+    @Transactional
+    public void quantityPlus(BasketBucketId basketBucketId) {
+        BasketBucketValue basketBucketValue = em.find(BasketBucketValue.class, basketBucketId);
+        basketBucketValue.setQuantity(basketBucketValue.getQuantity() + 1);
+        em.persist(basketBucketValue);
+    }
+
+    @Transactional
+    public void quantityMinus(BasketBucketId basketBucketId) {
+        BasketBucketValue basketBucketValue = em.find(BasketBucketValue.class, basketBucketId);
+        if (basketBucketValue.getQuantity() <= 1) {
+            remove(basketBucketId);
+        } else {
+            basketBucketValue.setQuantity(basketBucketValue.getQuantity() - 1);
+            em.persist(basketBucketValue);
+        }
     }
 }

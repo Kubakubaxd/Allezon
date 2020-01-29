@@ -41,7 +41,9 @@
                 <a class="dropdown-item" href="#">
                     <h:graphicImage url="#{item.auctionEntity.firstPhoto()}" width="50px" height="50px"/>
                     <h:outputText value="#{item.auctionEntity.title} #{item.quantity}szt."/>
-                    <h:commandLink action="#{basketBucketController.remove(item.basketBucketId)}" value="remove"/>
+                    <h:commandLink action="#{basketBucketController.remove(item.basketBucketId)}" value="remove "/>
+                    <h:commandLink action="#{basketBucketController.quantityPlus(item.basketBucketId)}" value="plus "/>
+                    <h:commandLink action="#{basketBucketController.quantityMinus(item.basketBucketId)}" value="minus"/>
                 </a>
             </c:forEach>
         </div>

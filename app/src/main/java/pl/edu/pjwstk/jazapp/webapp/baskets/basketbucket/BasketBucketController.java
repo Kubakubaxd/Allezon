@@ -20,6 +20,15 @@ public class BasketBucketController {
         repo.add(session.getUsername(), auction_id, 1);
     }
 
+    public void quantityPlus(BasketBucketId basketBucketId) {
+        repo.quantityPlus(basketBucketId);
+    }
+
+    public void quantityMinus(BasketBucketId basketBucketId) {
+        repo.quantityMinus(basketBucketId);
+    }
+
+
     public void remove(BasketBucketId basketBucketId) {
         repo.remove(basketBucketId);
     }

@@ -17,7 +17,15 @@ public class BasketController {
     SessionAsk session;
 
     public void create() {
-        repo.create();
+        repo.create(session.getUsername());
+    }
+
+    public boolean isExist() {
+        return repo.isExist(session.getUsername());
+    }
+
+    public void removeIfDateExpired() {
+        repo.removeIfDateExpired(session.getUsername());
     }
 
     public BasketEntity find(String owner) {
@@ -26,5 +34,9 @@ public class BasketController {
 
     public List<BasketBucketValue> getBasketBucketsBySessionOwner() {
         return repo.getBasketBuckets(session.getUsername());
+    }
+
+    public void updateDate() {
+        repo.updateDate(session.getUsername());
     }
 }
